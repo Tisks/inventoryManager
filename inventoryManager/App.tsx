@@ -28,6 +28,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import {API_BASE} from '@env';
+
 const Section: React.FC<
   PropsWithChildren<{
     title: string;
@@ -81,6 +83,7 @@ const App = () => {
             style={{
               backgroundColor: isDarkMode ? Colors.black : Colors.white,
             }}>
+            <Text>{API_BASE}</Text>
             <Section title="See Your Changes">
               <ReloadInstructions />
             </Section>
