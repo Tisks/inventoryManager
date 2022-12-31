@@ -11,6 +11,7 @@
 import {Box, NativeBaseProvider} from 'native-base';
 import React, {type PropsWithChildren} from 'react';
 import {
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -28,7 +29,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import {API_BASE} from '@env';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Section: React.FC<
   PropsWithChildren<{
@@ -60,44 +62,80 @@ const Section: React.FC<
   );
 };
 
-const App = () => {
+function ExampleView({navigation}) {
   const isDarkMode = useColorScheme() === 'dark';
+  return (
+    <>
+      <Header />
+      <View
+        style={{
+          backgroundColor: isDarkMode ? Colors.black : Colors.white,
+        }}>
+        <Section title="See Your Changes">
+          <ReloadInstructions />
+        </Section>
+        <Button
+          title="Go to Home2"
+          onPress={() => navigation.navigate('Home2')}
+        />
+        <Section title="Debug">
+          <DebugInstructions />
+        </Section>
+        <Section title="Learn More">
+          Read the docs to discover what to do next:
+        </Section>
+        <LearnMoreLinks />
+      </View>
+    </>
+  );
+}
 
+const ExampleView2 = () => {
+  const isDarkMode = useColorScheme() === 'dark';
+  return (
+    <>
+      <Header />
+      <View
+        style={{
+          backgroundColor: isDarkMode ? Colors.black : Colors.white,
+        }}>
+        <Text>its a newer one</Text>
+      </View>
+    </>
+  );
+};
+
+const App = () => {
+  /*
+  const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  return (
-    <NativeBaseProvider>
-      <SafeAreaView style={backgroundStyle}>
-        <StatusBar
-          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-          backgroundColor={backgroundStyle.backgroundColor}
-        />
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={backgroundStyle}>
-          <Header />
-          <Box>Hello world</Box>
-          <View
-            style={{
-              backgroundColor: isDarkMode ? Colors.black : Colors.white,
-            }}>
-            <Text>{API_BASE}</Text>
-            <Section title="See Your Changes">
-              <ReloadInstructions />
-            </Section>
-            <Section title="Debug">
-              <DebugInstructions />
-            </Section>
-            <Section title="Learn More">
-              Read the docs to discover what to do next:
-            </Section>
-            <LearnMoreLinks />
-          </View>
+  <SafeAreaView style={backgroundStyle}>
+    <StatusBar
+      barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+      backgroundColor={backgroundStyle.backgroundColor}
+    />
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
+      style={backgroundStyle}>
+
         </ScrollView>
-      </SafeAreaView>
-    </NativeBaseProvider>
+  </SafeAreaView>
+  */
+
+  const Stack = createNativeStackNavigator();
+
+  return (
+    <NavigationContainer>
+      <NativeBaseProvider>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={ExampleView} />
+          <Stack.Screen name="Home2" component={ExampleView2} />
+        </Stack.Navigator>
+      </NativeBaseProvider>
+    </NavigationContainer>
   );
 };
 
