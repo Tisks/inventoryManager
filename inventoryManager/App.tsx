@@ -81,9 +81,6 @@ const App = () => {
             style={{
               backgroundColor: isDarkMode ? Colors.black : Colors.white,
             }}>
-            <Section title="Step One">
-              Edit <Text style={styles.highlight}>App.tsx</Text>
-            </Section>
             <Section title="See Your Changes">
               <ReloadInstructions />
             </Section>
