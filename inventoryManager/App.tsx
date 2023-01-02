@@ -8,10 +8,18 @@
  * @format
  */
 
-import {Box, NativeBaseProvider} from 'native-base';
-import React, {type PropsWithChildren} from 'react';
+import {
+  Box,
+  Center,
+  HStack,
+  Icon,
+  NativeBaseProvider,
+  SearchIcon,
+} from 'native-base';
+import React, {useEffect, useState, type PropsWithChildren} from 'react';
 import {
   Button,
+  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -31,6 +39,8 @@ import {
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {onAuthStateChanged, onIdTokenChanged, User} from 'firebase/auth';
+import {auth} from './src/config';
 
 const Section: React.FC<
   PropsWithChildren<{
@@ -106,27 +116,38 @@ const ExampleView2 = () => {
 };
 
 const App = () => {
-  /*
-  const isDarkMode = useColorScheme() === 'dark';
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  <SafeAreaView style={backgroundStyle}>
-    <StatusBar
-      barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-      backgroundColor={backgroundStyle.backgroundColor}
-    />
-    <ScrollView
-      contentInsetAdjustmentBehavior="automatic"
-      style={backgroundStyle}>
-
-        </ScrollView>
-  </SafeAreaView>
-  */
+  const [selected, setSelected] = useState(1);
 
   const Stack = createNativeStackNavigator();
 
+  /*
+   * Component that uses the Firebase Auth observer and listens
+   * for authentication state changes to set the user to the state
+  
+  useEffect(() => {
+    const unsubscribeOnAuthStateChanged = onAuthStateChanged(
+      auth,
+      async (user: any) => {
+        console.log({user});
+        if (user) {
+          await getOrCreateUserById(user);
+        }
+      },
+    );
+
+    const unsubscribeOnIdTokenChanged = onIdTokenChanged(auth, async user => {
+      if (!user) return;
+      const newToken = await user.getIdToken();
+      if (!newToken) return;
+      dispatch(setUserIdToken(newToken));
+    });
+
+    return () => {
+      unsubscribeOnAuthStateChanged();
+      unsubscribeOnIdTokenChanged();
+    };
+  }, []);
+ */
   return (
     <NavigationContainer>
       <NativeBaseProvider>
