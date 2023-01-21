@@ -1,16 +1,24 @@
-import {Box, Center} from 'native-base';
+import {Box, Center, HStack} from 'native-base';
 import React from 'react';
-import Form from '../components/Login/components/Form';
+import {WithNavigation} from '../../App';
+import Divider from '../common/Divider';
+import CenteredLayout from '../common/layout/Centered';
+import Form, {IFormInputs} from '../components/Login/components/Form';
 import Header from '../components/Login/components/Header';
+import {GoogleProviderButton} from '../components/Login/components/ProviderButtons';
 
-const Login = () => {
+const Login: React.FC<WithNavigation> = ({navigation}) => {
+  const onSubmit = (data: IFormInputs) => {
+    console.log({data});
+  };
+  const loginWithGoogle = () => {};
   return (
-    <Center w="100%">
-      <Box safeArea p="2" py="8" w="90%" maxW="290">
-        <Header />
-        <Form />
-      </Box>
-    </Center>
+    <CenteredLayout>
+      <Header />
+      <Form onSubmit={onSubmit} navigation={navigation} />
+      <Divider mb={6} />
+      <GoogleProviderButton onPress={loginWithGoogle} />
+    </CenteredLayout>
   );
 };
 
