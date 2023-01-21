@@ -1,61 +1,88 @@
-import {
-  Button,
-  FormControl,
-  Heading,
-  HStack,
-  Input,
-  Link,
-  Text,
-  VStack,
-} from 'native-base';
+import {Button, Flex, FormControl, Input, Link, VStack} from 'native-base';
 import React from 'react';
+import {useForm, Controller} from 'react-hook-form';
+import {WithNavigation} from '../../../../App';
+import {emailRegex} from '../../../utils/constants';
 
-const Form = () => {
+export interface IFormInputs {
+  email: string;
+  password: string;
+}
+
+interface IFormProps extends WithNavigation {
+  onSubmit: (data: IFormInputs) => void;
+}
+
+const Form: React.FC<IFormProps> = ({onSubmit, navigation}) => {
+  const {
+    control,
+    formState: {errors},
+    getValues,
+  } = useForm<IFormInputs>({
+    mode: 'onBlur', // "onChange"
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const onLocalSubmit = () => onSubmit(getValues());
+
   return (
-    <>
-      <VStack space={3} mt="5">
-        <FormControl>
-          <FormControl.Label>Email ID</FormControl.Label>
-          <Input />
-        </FormControl>
-        <FormControl>
-          <FormControl.Label>Password</FormControl.Label>
-          <Input type="password" />
+    <VStack space={3} mt="5">
+      <FormControl isRequired isInvalid={'email' in errors}>
+        <FormControl.Label>Email</FormControl.Label>
+        <Controller
+          control={control}
+          render={({field: {onChange, onBlur, value}}) => (
+            <Input
+              onBlur={onBlur}
+              onChangeText={val => onChange(val)}
+              value={value}
+              type="text"
+            />
+          )}
+          name="email"
+          rules={{required: 'Email is required', pattern: emailRegex}}
+        />
+        <FormControl.ErrorMessage>
+          {errors.email?.message}
+        </FormControl.ErrorMessage>
+      </FormControl>
+      <FormControl isInvalid={'password' in errors}>
+        <FormControl.Label>Password</FormControl.Label>
+        <Controller
+          control={control}
+          render={({field: {onChange, onBlur, value}}) => (
+            <Input
+              onBlur={onBlur}
+              onChangeText={val => onChange(val)}
+              value={value}
+              type="password"
+            />
+          )}
+          name="password"
+          rules={{required: 'Password is required'}}
+        />
+        <FormControl.ErrorMessage>
+          {errors.password?.message}
+        </FormControl.ErrorMessage>
+        <Flex flexDir="row" justifyContent="flex-end">
+          Don't have an account?
           <Link
             _text={{
-              fontSize: 'xs',
-              fontWeight: '500',
               color: 'indigo.500',
             }}
-            alignSelf="flex-end"
-            mt="1">
-            Forget Password?
+            ml="1"
+            onPress={() => navigation.push('Home2')}>
+            Sign up
           </Link>
-        </FormControl>
-        <Button mt="2" colorScheme="indigo">
-          Sign in
-        </Button>
-        <HStack mt="6" justifyContent="center">
-          <Text
-            fontSize="sm"
-            color="coolGray.600"
-            _dark={{
-              color: 'warmGray.200',
-            }}>
-            I'm a new user.{' '}
-          </Text>
-          <Link
-            _text={{
-              color: 'indigo.500',
-              fontWeight: 'medium',
-              fontSize: 'sm',
-            }}
-            href="#">
-            Sign Up
-          </Link>
-        </HStack>
-      </VStack>
-    </>
+        </Flex>
+      </FormControl>
+      <Button my="20px" onPress={onLocalSubmit} colorScheme="blue" size="lg">
+        Login
+      </Button>
+    </VStack>
   );
 };
 
