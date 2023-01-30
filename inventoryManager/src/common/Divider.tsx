@@ -1,4 +1,4 @@
-import {Box, Center, Divider as NativeDivider, Flex, Text} from 'native-base';
+import {Divider as NativeDivider, Flex, Text} from 'native-base';
 import {InterfaceBoxProps} from 'native-base/lib/typescript/components/primitives/Box';
 import React from 'react';
 

@@ -1,4 +1,4 @@
-import {Box, Center, Heading, HStack} from 'native-base';
+import {Heading} from 'native-base';
 import React from 'react';
 import {WithNavigation} from '../../App';
 import CenteredLayout from '../common/layout/Centered';
@@ -8,7 +8,6 @@ const SignUp: React.FC<WithNavigation> = ({navigation}) => {
   const onSubmit = (data: IFormInputs) => {
     console.log({data});
   };
-  const loginWithGoogle = () => {};
   return (
     <CenteredLayout>
       <Heading

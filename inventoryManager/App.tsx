@@ -21,7 +21,7 @@ import {auth} from './src/config';
 import Login from './src/views/Login';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 
-export type TNavigation = NativeStackHeaderProps['navigation']
+export type TNavigation = NativeStackHeaderProps['navigation'];
 export interface WithNavigation {
   navigation: TNavigation;
 }
@@ -49,7 +49,7 @@ const App = () => {
   /*
    * Component that uses the Firebase Auth observer and listens
    * for authentication state changes to set the user to the state
-  
+
   useEffect(() => {
     const unsubscribeOnAuthStateChanged = onAuthStateChanged(
       auth,

@@ -1,4 +1,3 @@
-import {Box, Center, HStack} from 'native-base';
 import React from 'react';
 import {WithNavigation} from '../../App';
 import Divider from '../common/Divider';
