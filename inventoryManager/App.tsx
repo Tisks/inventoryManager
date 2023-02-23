@@ -20,6 +20,7 @@ import {onAuthStateChanged, onIdTokenChanged, User} from 'firebase/auth';
 import {auth} from './src/config';
 import Login from './src/views/Login';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
+import SignUp from './src/views/SignUp';
 
 export type TNavigation = NativeStackHeaderProps['navigation'];
 export interface WithNavigation {
@@ -77,9 +78,9 @@ const App = () => {
   return (
     <NavigationContainer>
       <NativeBaseProvider>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={Login} />
-          <Stack.Screen name="Home2" component={ExampleView2} />
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="SignUp" component={SignUp} />
         </Stack.Navigator>
       </NativeBaseProvider>
     </NavigationContainer>
