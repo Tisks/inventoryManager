@@ -6,15 +6,7 @@ import {WithNavigation} from '../../../../../App';
 import TextInput from '../../../../common/forms/TextInput';
 import {formFieldNames, formProps, validationSchema} from './constants';
 import SignUpLink from './SignUpLink';
-
-export interface IFormInputs {
-  email: string;
-  password: string;
-}
-
-interface IFormProps extends WithNavigation {
-  onSubmit: (data: IFormInputs) => void;
-}
+import {IFormProps, IFormInputs} from './types';
 
 const Form: React.FC<IFormProps> = ({onSubmit, navigation}) => {
   const {
