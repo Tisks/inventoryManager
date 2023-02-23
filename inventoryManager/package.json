@@ -11,6 +11,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.11",
     "@react-navigation/native": "^6.1.1",
     "@react-navigation/native-stack": "^6.9.7",
     "@types/react-native-vector-icons": "^6.4.12",
@@ -26,6 +27,7 @@
     "react-native-screens": "^3.18.2",
     "react-native-svg": "12.1.1",
     "react-native-vector-icons": "^9.2.0",
+    "yup": "^1.0.0",
     "zustand": "^4.3.2"
   },
   "devDependencies": {
