@@ -8,23 +8,25 @@ import {
   Alert,
   useToast,
   IAlertProps,
+  IToastProps,
 } from 'native-base';
 
-export interface ToastAlertProps extends IAlertProps {
+export interface ToastProps
+  extends Pick<IAlertProps, 'status' | 'variant'>,
+    Omit<IToastProps, 'variant'> {
   id: string;
   title?: string;
   description?: string;
-  isClosable: boolean;
+  isClosable?: boolean;
 }
 
-export const ToastAlert: React.FC<ToastAlertProps> = ({
+export const Toast: React.FC<ToastProps> = ({
   id,
   status,
   variant,
   title,
   description,
   isClosable,
-  ...rest
 }) => {
   const toast = useToast();
 
@@ -34,8 +36,7 @@ export const ToastAlert: React.FC<ToastAlertProps> = ({
       alignSelf="center"
       flexDirection="row"
       status={status || 'info'}
-      variant={variant}
-      {...rest}>
+      variant={variant}>
       <VStack space={1} flexShrink={1} w="80%">
         <HStack
           flexShrink={1}

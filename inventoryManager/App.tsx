@@ -8,8 +8,8 @@
  * @format
  */
 
-import Login from './src/views/Login';
-import SignUp from './src/views/SignUp';
+import Login from './src/views/Authentication/Login';
+import SignUp from './src/views/Authentication/SignUp';
 import React, {useState} from 'react';
 import {NativeBaseProvider} from 'native-base';
 import {Text, useColorScheme, View} from 'react-native';
@@ -17,6 +17,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Example from './src/views/Example';
 
 export type TNavigation = NativeStackHeaderProps['navigation'];
 export interface WithNavigation {
@@ -77,6 +78,7 @@ const App = () => {
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="SignUp" component={SignUp} />
+          <Stack.Screen name="Example" component={Example} />
         </Stack.Navigator>
       </NativeBaseProvider>
     </NavigationContainer>

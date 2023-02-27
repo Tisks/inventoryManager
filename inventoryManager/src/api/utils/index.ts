@@ -2,6 +2,7 @@ import {TCollection} from '../../types';
 import firestore, {
   FirebaseFirestoreTypes,
 } from '@react-native-firebase/firestore';
+import { TLooseObject } from '../../types/general';
 
 enum EDocMethods {
   DELETE = 'deleted',
@@ -85,7 +86,7 @@ export const getDoc = async (collectionName: TCollection, docId: string) => {
 
 export const createDoc = async (
   collectionName: TCollection,
-  data: Record<string, unknown>,
+  data: TLooseObject,
   docId?: string,
 ) => {
   let resDoc: any;
@@ -103,7 +104,7 @@ export const createDoc = async (
 
 export const updateDoc = async (
   collectionName: TCollection,
-  data: Record<string, unknown>,
+  data: TLooseObject,
   docId: string,
   doLog: boolean = true,
 ) => {

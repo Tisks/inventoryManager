@@ -20,10 +20,7 @@ export const signUpWithEmailAndPassword = async (
 
     return !!userInfo;
   } catch (e: any) {
-    if (e.code === firebaseErrors.EMAIL_ALREADY_IN_USE)
-      return firebaseErrors.EMAIL_ALREADY_IN_USE;
-
-    return false;
+    return e.code || false;
   }
 };
 
@@ -35,8 +32,8 @@ export const signInWithEmailAndPassword = async (
     const res = await auth().signInWithEmailAndPassword(email, password);
     const userInfo = getUserInfo(res.user);
     return !!userInfo;
-  } catch (error: any) {
-    return error.code;
+  } catch (e: any) {
+    return e.code || false;
   }
 };
 

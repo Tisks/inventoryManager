@@ -25,5 +25,15 @@ export const formProps = [
   },
 ];
 
-export const signUpText = 'Sign Up'
-export const loginText = 'Login'
+export const toastProps = {
+  wrongPasswordUsed: {
+    title: 'Email already used',
+    description: 'Please enter a different email',
+    variant: 'solid',
+    status: 'error',
+  },
+};
+
+export const signUpText = 'Sign Up';
+export const loginText = 'Login';
+export const toastId = 'successful_login';

@@ -42,17 +42,20 @@ export const formProps = [
   },
 ];
 
-export const successfulSignUp = {
-  title: 'Account created',
-  description: 'Thanks for signing up with us.',
-  variant: 'solid',
-};
-
-export const emailAlreadyUsed = {
-  title: 'Email already used',
-  description: 'Please enter a different email',
-  variant: 'solid',
-  status: 'error',
+//successfulSignUpToastProps
+//emailAlreadyUsedToastProps
+export const toastProps = {
+  successfulSignUp: {
+    title: 'Account created',
+    description: 'Thanks for signing up with us.',
+    variant: 'solid',
+  },
+  emailAlreadyUsed: {
+    title: 'Email already used',
+    description: 'Please enter a different email',
+    variant: 'solid',
+    status: 'error',
+  },
 };
 
 export const toastId = 'successful_sign_up';
