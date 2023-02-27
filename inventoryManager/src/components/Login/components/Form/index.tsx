@@ -1,12 +1,31 @@
 import React from 'react';
 import {yupResolver} from '@hookform/resolvers/yup';
-import {Button, VStack} from 'native-base';
+import {Button, Flex, Link, VStack} from 'native-base';
 import {useForm} from 'react-hook-form';
-import {WithNavigation} from '../../../../../App';
+import {TNavigation, WithNavigation} from '../../../../../App';
 import TextInput from '../../../../common/forms/TextInput';
-import {formFieldNames, formProps, validationSchema} from './constants';
-import SignUpLink from './SignUpLink';
+import {
+  formFieldNames,
+  formProps,
+  loginText,
+  signUpText,
+  validationSchema,
+} from './constants';
 import {IFormProps, IFormInputs} from './types';
+
+const SignUpLink: React.FC<{navigation: TNavigation}> = ({navigation}) => (
+  <Flex flexDir="row" justifyContent="flex-end">
+    Don't have an account?
+    <Link
+      _text={{
+        color: 'indigo.500',
+      }}
+      ml="1"
+      onPress={() => navigation.push('SignUp')}>
+      {signUpText}
+    </Link>
+  </Flex>
+);
 
 const Form: React.FC<IFormProps> = ({onSubmit, navigation}) => {
   const {
@@ -28,7 +47,7 @@ const Form: React.FC<IFormProps> = ({onSubmit, navigation}) => {
       ))}
       <SignUpLink navigation={navigation} />
       <Button my="20px" onPress={onLocalSubmit} colorScheme="blue" size="lg">
-        Login
+        {loginText}
       </Button>
     </VStack>
   );

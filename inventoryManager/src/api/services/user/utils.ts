@@ -2,7 +2,7 @@ import {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 export const getUserInfo = (
   user: FirebaseAuthTypes.User,
-  displayName: string,
+  displayName?: string,
 ) => {
   if (!user) return;
   return {

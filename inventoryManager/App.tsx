@@ -8,19 +8,15 @@
  * @format
  */
 
-import {NativeBaseProvider} from 'native-base';
-import React, {useState} from 'react';
-import {Text, useColorScheme, View} from 'react-native';
-
-import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
-
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {onAuthStateChanged, onIdTokenChanged, User} from 'firebase/auth';
-import {auth} from './src/config';
 import Login from './src/views/Login';
-import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import SignUp from './src/views/SignUp';
+import React, {useState} from 'react';
+import {NativeBaseProvider} from 'native-base';
+import {Text, useColorScheme, View} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
+import {NativeStackHeaderProps} from '@react-navigation/native-stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 export type TNavigation = NativeStackHeaderProps['navigation'];
 export interface WithNavigation {

@@ -1,4 +1,4 @@
-import {Button, Flex, Link, VStack} from 'native-base';
+import {Button, VStack} from 'native-base';
 import React from 'react';
 import {useForm} from 'react-hook-form';
 import TextInput from '../../../../common/forms/TextInput';
@@ -6,6 +6,7 @@ import {
   creatingUser,
   formFieldNames,
   formProps,
+  signUpText,
   validationSchema,
 } from './constants';
 import {IFormInputs, IFormProps} from './types';
@@ -36,7 +37,7 @@ const Form: React.FC<IFormProps> = ({onSubmit, isLoading}) => {
         size="lg"
         isLoading={isLoading}
         isLoadingText={creatingUser}>
-        Sign up
+        {signUpText}
       </Button>
     </VStack>
   );

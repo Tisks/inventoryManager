@@ -24,3 +24,6 @@ export const formProps = [
     inputType: 'password' as TInput,
   },
 ];
+
+export const signUpText = 'Sign Up'
+export const loginText = 'Login'
