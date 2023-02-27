@@ -27,7 +27,7 @@ const Login: React.FC<WithNavigation> = ({navigation}) => {
     setIsSigningInUser(false);
 
     const props = determineToastProps(res, 'LOGIN', {});
-    console.log({res, props});
+
     if (props) {
       showToast(toast, toastId, props)
       navigation.navigate('Example');

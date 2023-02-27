@@ -18,7 +18,7 @@ const logMessage = (
 ) =>
   console.log(
     `Doc ${
-      docId ? `with id: ${docId}` : ''
+      docId ? `with id ${docId}` : ''
     } in the collection ${collectionName} was ${
       EDocMethods[method]
     } successfully`,
