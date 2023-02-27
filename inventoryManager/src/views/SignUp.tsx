@@ -7,27 +7,42 @@ import CenteredLayout from '../common/layout/Centered';
 import {ToastAlert} from '../common/toast';
 import Form from '../components/SignUp/components/Form';
 import {
+  emailAlreadyUsed,
   successfulSignUp,
   toastId,
 } from '../components/SignUp/components/Form/constants';
 import {ISignUpInputs} from '../components/SignUp/components/Form/types';
 import Header from '../components/SignUp/components/Header';
+import {firebaseErrors} from '../api/services/user/constants';
 
 const SignUp: React.FC<WithNavigation> = ({navigation}) => {
   const toast = useToast();
   const [isCreatingUser, setIsCreatingUser] = useState(false);
+
+  const determineToastProps = (res: string | boolean) => {
+    let props = {};
+    if (typeof res === 'string') {
+      if (res === firebaseErrors.EMAIL_ALREADY_IN_USE) {
+        props = emailAlreadyUsed;
+      }
+    } else props = successfulSignUp;
+    return props;
+  };
+  
   const onSubmit = async (data: ISignUpInputs) => {
     Keyboard.dismiss();
+
     setIsCreatingUser(true);
     const res = await signUpWithEmailAndPassword(data);
-    if (res) {
-      setIsCreatingUser(false);
-      toast.show({
-        render: () => {
-          return <ToastAlert id={toastId} {...successfulSignUp} />;
-        },
-      });
-    }
+    setIsCreatingUser(false);
+
+    const props = determineToastProps(res);
+
+    toast.show({
+      render: () => {
+        return <ToastAlert id={toastId} isClosable={true} {...props} />;
+      },
+    });
   };
   return (
     <CenteredLayout>

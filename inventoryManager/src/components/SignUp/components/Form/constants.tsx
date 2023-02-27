@@ -44,11 +44,19 @@ export const formProps = [
 
 export const successfulSignUp = {
   title: 'Account created',
-  variant: 'solid',
   description: 'Thanks for signing up with us.',
-  isClosable: true,
+  variant: 'solid',
+};
+
+export const emailAlreadyUsed = {
+  title: 'Email already used',
+  description: 'Please enter a different email',
+  variant: 'solid',
+  status: 'error',
 };
 
 export const toastId = 'successful_sign_up';
 
 export const creatingUser = 'Creating user';
+
+export const signUpText = 'Sign up';

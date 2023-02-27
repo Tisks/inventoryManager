@@ -7,4 +7,5 @@ export interface IFormInputs {
 
 export interface IFormProps extends WithNavigation {
   onSubmit: (data: IFormInputs) => void;
+  isLoading?: boolean;
 }
