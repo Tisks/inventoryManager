@@ -18,6 +18,7 @@ import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Example from './src/views/Example';
+import Routes from './src/utils/routes';
 
 export type TNavigation = NativeStackHeaderProps['navigation'];
 export interface WithNavigation {
@@ -75,10 +76,10 @@ const App = () => {
   return (
     <NavigationContainer>
       <NativeBaseProvider>
-        <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="SignUp" component={SignUp} />
-          <Stack.Screen name="Example" component={Example} />
+        <Stack.Navigator initialRouteName={Routes.Login}>
+          <Stack.Screen name={Routes.Login} component={Login} />
+          <Stack.Screen name={Routes.SignUp} component={SignUp} />
+          <Stack.Screen name={Routes.Example} component={Example} />
         </Stack.Navigator>
       </NativeBaseProvider>
     </NavigationContainer>

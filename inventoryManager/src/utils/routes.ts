@@ -1,11 +1,12 @@
 enum Routes {
   HOME = '/',
-  LOGIN = '/login',
+  Login = 'Login',
+  SignUp = 'SignUp',
+  Example = 'Example',
   DASHBOARD = '/dashboard',
   EDITOR = '/editor',
   ACCOUNT = '/account',
   SHOPPING_CART = '/shopping-cart',
-  SIGNUP = '/signup',
   EDIT_INVENTORY = '/inventory-edit',
   NEW_INVENTORY = '/inventory-new',
   INVENTORY_LIST = '/inventory-list',
@@ -16,6 +17,6 @@ enum Routes {
   TESTING_AREA = '/testing-area',
 }
 
-export const outsideMainRoutes = [Routes.HOME, Routes.LOGIN, Routes.SIGNUP];
+export const outsideMainRoutes = [Routes.HOME, Routes.Login, Routes.SignUp];
 
 export default Routes;

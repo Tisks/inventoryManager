@@ -1,5 +1,6 @@
 import {useToast} from 'native-base';
 import React, {useState} from 'react';
+import {UseFormReset} from 'react-hook-form';
 import {Keyboard} from 'react-native';
 import {WithNavigation} from '../../../App';
 import {signInWithEmailAndPassword} from '../../api/services/user';
@@ -19,7 +20,10 @@ const Login: React.FC<WithNavigation> = ({navigation}) => {
 
   const [isSigningInUser, setIsSigningInUser] = useState(false);
 
-  const onSubmit = async (data: IFormInputs) => {
+  const onSubmit = async (
+    data: IFormInputs,
+    resetForm: UseFormReset<IFormInputs>,
+  ) => {
     Keyboard.dismiss();
 
     setIsSigningInUser(true);
@@ -29,7 +33,8 @@ const Login: React.FC<WithNavigation> = ({navigation}) => {
     const props = determineToastProps(res, 'LOGIN', {});
 
     if (props) {
-      showToast(toast, toastId, props)
+      resetForm();
+      showToast(toast, toastId, props);
       navigation.navigate('Example');
     }
   };

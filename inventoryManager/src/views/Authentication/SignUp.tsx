@@ -10,15 +10,16 @@ import {
   toastId,
   toastProps,
 } from '../../components/SignUp/components/Form/constants';
-import {ISignUpInputs} from '../../components/SignUp/components/Form/types';
+import {IFormInputs, ISignUpInputs} from '../../components/SignUp/components/Form/types';
 import Header from '../../components/SignUp/components/Header';
 import {determineToastProps, showToast} from './utils';
+import { UseFormReset } from 'react-hook-form';
 
 const SignUp: React.FC<WithNavigation> = ({navigation}) => {
   const toast = useToast();
   const [isCreatingUser, setIsCreatingUser] = useState(false);
 
-  const onSubmit = async (data: ISignUpInputs) => {
+  const onSubmit = async (data: ISignUpInputs, resetForm: UseFormReset<IFormInputs>) => {
     Keyboard.dismiss();
 
     setIsCreatingUser(true);
@@ -32,6 +33,7 @@ const SignUp: React.FC<WithNavigation> = ({navigation}) => {
     );
 
     if (props) {
+      resetForm()
       showToast(toast, toastId, props);
       navigation.navigate('Example');
     }

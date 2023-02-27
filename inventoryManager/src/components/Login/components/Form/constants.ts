@@ -37,3 +37,5 @@ export const toastProps = {
 export const signUpText = 'Sign Up';
 export const loginText = 'Login';
 export const toastId = 'successful_login';
+export const loginInUserText = 'Login in'
+export const dontHaveAccountText = "Don't have an account?"

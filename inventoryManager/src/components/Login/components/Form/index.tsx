@@ -5,8 +5,10 @@ import {useForm} from 'react-hook-form';
 import {TNavigation, WithNavigation} from '../../../../../App';
 import TextInput from '../../../../common/forms/TextInput';
 import {
+  dontHaveAccountText,
   formFieldNames,
   formProps,
+  loginInUserText,
   loginText,
   signUpText,
   validationSchema,
@@ -15,7 +17,7 @@ import {IFormProps, IFormInputs} from './types';
 
 const SignUpLink: React.FC<{navigation: TNavigation}> = ({navigation}) => (
   <Flex flexDir="row" justifyContent="flex-end">
-    Don't have an account?
+    {dontHaveAccountText}
     <Link
       _text={{
         color: 'indigo.500',
@@ -27,26 +29,32 @@ const SignUpLink: React.FC<{navigation: TNavigation}> = ({navigation}) => (
   </Flex>
 );
 
-const Form: React.FC<IFormProps> = ({onSubmit, navigation}) => {
+const Form: React.FC<IFormProps> = ({onSubmit, navigation, isLoading}) => {
   const {
     control,
     formState: {errors},
     getValues,
+    reset,
   } = useForm<IFormInputs>({
     mode: 'onBlur', // "onChange"
     defaultValues: formFieldNames,
     resolver: yupResolver(validationSchema),
   });
 
-  const onLocalSubmit = () => onSubmit(getValues());
-
+  const onLocalSubmit = () => onSubmit(getValues(), reset);
   return (
     <VStack space={3} mt="5">
       {formProps.map(({...rest}, key) => (
         <TextInput errors={errors} control={control} key={key} {...rest} />
       ))}
       <SignUpLink navigation={navigation} />
-      <Button my="20px" onPress={onLocalSubmit} colorScheme="blue" size="lg">
+      <Button
+        my="20px"
+        onPress={onLocalSubmit}
+        colorScheme="blue"
+        size="lg"
+        isLoading={isLoading}
+        isLoadingText={loginInUserText}>
         {loginText}
       </Button>
     </VStack>

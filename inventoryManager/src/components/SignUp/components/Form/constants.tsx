@@ -60,6 +60,6 @@ export const toastProps = {
 
 export const toastId = 'successful_sign_up';
 
-export const creatingUser = 'Creating user';
+export const creatingUserText = 'Creating user';
 
 export const signUpText = 'Sign up';

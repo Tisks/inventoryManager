@@ -3,7 +3,7 @@ import React from 'react';
 import {useForm} from 'react-hook-form';
 import TextInput from '../../../../common/forms/TextInput';
 import {
-  creatingUser,
+  creatingUserText,
   formFieldNames,
   formProps,
   signUpText,
@@ -17,14 +17,14 @@ const Form: React.FC<IFormProps> = ({onSubmit, isLoading}) => {
     control,
     formState: {errors},
     getValues,
+    reset,
   } = useForm<IFormInputs>({
     mode: 'onBlur', // "onChange"
     defaultValues: formFieldNames,
     resolver: yupResolver(validationSchema),
   });
 
-  const onLocalSubmit = () => onSubmit(getValues());
-
+  const onLocalSubmit = () => onSubmit(getValues(), reset);
   return (
     <VStack space={3} mt="5">
       {formProps.map(({...rest}, key) => (
@@ -36,7 +36,7 @@ const Form: React.FC<IFormProps> = ({onSubmit, isLoading}) => {
         colorScheme="blue"
         size="lg"
         isLoading={isLoading}
-        isLoadingText={creatingUser}>
+        isLoadingText={creatingUserText}>
         {signUpText}
       </Button>
     </VStack>
