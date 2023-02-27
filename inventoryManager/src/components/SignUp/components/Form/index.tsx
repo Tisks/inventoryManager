@@ -2,11 +2,16 @@ import {Button, Flex, Link, VStack} from 'native-base';
 import React from 'react';
 import {useForm} from 'react-hook-form';
 import TextInput from '../../../../common/forms/TextInput';
-import {formFieldNames, formProps, validationSchema} from './constants';
+import {
+  creatingUser,
+  formFieldNames,
+  formProps,
+  validationSchema,
+} from './constants';
 import {IFormInputs, IFormProps} from './types';
 import {yupResolver} from '@hookform/resolvers/yup';
 
-const Form: React.FC<IFormProps> = ({onSubmit}) => {
+const Form: React.FC<IFormProps> = ({onSubmit, isLoading}) => {
   const {
     control,
     formState: {errors},
@@ -24,7 +29,13 @@ const Form: React.FC<IFormProps> = ({onSubmit}) => {
       {formProps.map(({...rest}, key) => (
         <TextInput errors={errors} control={control} key={key} {...rest} />
       ))}
-      <Button my="20px" onPress={onLocalSubmit} colorScheme="blue" size="lg">
+      <Button
+        my="20px"
+        onPress={onLocalSubmit}
+        colorScheme="blue"
+        size="lg"
+        isLoading={isLoading}
+        isLoadingText={creatingUser}>
         Sign up
       </Button>
     </VStack>

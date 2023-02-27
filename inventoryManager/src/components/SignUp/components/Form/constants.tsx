@@ -41,3 +41,14 @@ export const formProps = [
     inputType: 'password' as TInput,
   },
 ];
+
+export const successfulSignUp = {
+  title: 'Account created',
+  variant: 'solid',
+  description: 'Thanks for signing up with us.',
+  isClosable: true,
+};
+
+export const toastId = 'successful_sign_up';
+
+export const creatingUser = 'Creating user';
