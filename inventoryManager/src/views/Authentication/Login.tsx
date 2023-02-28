@@ -1,19 +1,21 @@
 import {useToast} from 'native-base';
 import React, {useState} from 'react';
-import {UseFormReset} from 'react-hook-form';
+import {UseFormResetField} from 'react-hook-form';
 import {Keyboard} from 'react-native';
 import {WithNavigation} from '../../../App';
 import {signInWithEmailAndPassword} from '../../api/services/user';
 import Divider from '../../common/Divider';
 import CenteredLayout from '../../common/layout/Centered';
-import {Toast} from '../../common/Toast';
 import Form from '../../components/Login/components/Form';
 import {toastId} from '../../components/Login/components/Form/constants';
 import {IFormInputs} from '../../components/Login/components/Form/types';
 import Header from '../../components/Login/components/Header';
 import {GoogleProviderButton} from '../../components/Login/components/ProviderButtons';
-import {isObjectEmpty} from '../../utils/general';
-import {determineToastProps, showToast} from './utils';
+import {
+  determineSuccessfulRequestResult,
+  determineToastProps,
+  showToast,
+} from './utils';
 
 const Login: React.FC<WithNavigation> = ({navigation}) => {
   const toast = useToast();
@@ -22,7 +24,8 @@ const Login: React.FC<WithNavigation> = ({navigation}) => {
 
   const onSubmit = async (
     data: IFormInputs,
-    resetForm: UseFormReset<IFormInputs>,
+    resetField: UseFormResetField<IFormInputs>,
+    fieldToBeReset: keyof IFormInputs,
   ) => {
     Keyboard.dismiss();
 
@@ -33,9 +36,9 @@ const Login: React.FC<WithNavigation> = ({navigation}) => {
     const props = determineToastProps(res, 'LOGIN', {});
 
     if (props) {
-      resetForm();
+      resetField(fieldToBeReset);
       showToast(toast, toastId, props);
-      navigation.navigate('Example');
+      determineSuccessfulRequestResult(res) && navigation.navigate('Example');
     }
   };
 
