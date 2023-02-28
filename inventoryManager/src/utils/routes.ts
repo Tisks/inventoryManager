@@ -1,8 +1,10 @@
 enum Routes {
-  HOME = '/',
   Login = 'Login',
   SignUp = 'SignUp',
   Example = 'Example',
+}
+export type TRoutes = keyof typeof Routes
+/*
   DASHBOARD = '/dashboard',
   EDITOR = '/editor',
   ACCOUNT = '/account',
@@ -15,8 +17,8 @@ enum Routes {
   NEW_GROUP = '/group-new',
   GROUP_INVITATIONS = '/group-invitations',
   TESTING_AREA = '/testing-area',
-}
 
-export const outsideMainRoutes = [Routes.HOME, Routes.Login, Routes.SignUp];
+*/
+export const outsideMainRoutes = [Routes.Login, Routes.SignUp] as string[];
 
 export default Routes;

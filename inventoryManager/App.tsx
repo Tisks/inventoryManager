@@ -12,13 +12,14 @@ import Login from './src/views/Authentication/Login';
 import SignUp from './src/views/Authentication/SignUp';
 import React, {useState} from 'react';
 import {NativeBaseProvider} from 'native-base';
-import {Text, useColorScheme, View} from 'react-native';
+import {Button, Text, useColorScheme, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Example from './src/views/Example';
-import Routes from './src/utils/routes';
+import Routes, {outsideMainRoutes, TRoutes} from './src/utils/routes';
+import {routeAndComponent} from './src/utils/constants';
 
 export type TNavigation = NativeStackHeaderProps['navigation'];
 export interface WithNavigation {
@@ -77,9 +78,18 @@ const App = () => {
     <NavigationContainer>
       <NativeBaseProvider>
         <Stack.Navigator initialRouteName={Routes.Login}>
-          <Stack.Screen name={Routes.Login} component={Login} />
-          <Stack.Screen name={Routes.SignUp} component={SignUp} />
-          <Stack.Screen name={Routes.Example} component={Example} />
+          {Object.keys(Routes).map((route, index) => {
+            return (
+              <Stack.Screen
+                name={Routes[route as TRoutes]}
+                component={routeAndComponent[route as TRoutes]}
+                options={() => ({
+                  headerBackVisible: outsideMainRoutes.includes(route),
+                })}
+                key={index}
+              />
+            );
+          })}
         </Stack.Navigator>
       </NativeBaseProvider>
     </NavigationContainer>
