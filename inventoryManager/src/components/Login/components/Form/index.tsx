@@ -34,14 +34,14 @@ const Form: React.FC<IFormProps> = ({onSubmit, navigation, isLoading}) => {
     control,
     formState: {errors},
     getValues,
-    reset,
+    resetField,
   } = useForm<IFormInputs>({
     mode: 'onBlur', // "onChange"
     defaultValues: formFieldNames,
     resolver: yupResolver(validationSchema),
   });
 
-  const onLocalSubmit = () => onSubmit(getValues(), reset);
+  const onLocalSubmit = () => onSubmit(getValues(), resetField, 'password');
   return (
     <VStack space={3} mt="5">
       {formProps.map(({...rest}, key) => (
