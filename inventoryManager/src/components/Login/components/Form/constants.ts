@@ -32,6 +32,12 @@ export const toastProps = {
     variant: 'solid',
     status: 'error',
   },
+  tooManyRequests: {
+    title: 'Too many requests',
+    description: 'Please try again in some minutes',
+    variant: 'solid',
+    status: 'error',
+  }
 };
 
 export const signUpText = 'Sign Up';

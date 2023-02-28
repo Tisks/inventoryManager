@@ -1,9 +1,12 @@
-import {firebaseErrors} from '../../../api/services/user/constants';
+import {
+  firebaseErrors,
+  firebaseErrorsValues,
+} from '../../../api/services/user/constants';
 import {toastProps as SignUpToastProps} from '../../../components/SignUp/components/Form/constants';
 import {toastProps as LoginToastProps} from '../../../components/Login/components/Form/constants';
 import {Toast} from '../../../common/Toast';
 import {TLooseObject, TUseToast} from '../../../types/general';
-import { isObjectEmpty } from '../../../utils/general';
+import {isObjectEmpty} from '../../../utils/general';
 
 export const TComponent = {
   LOGIN: 'LOGIN',
@@ -34,6 +37,8 @@ const determineSpecificToastPropsUsed = (
       return toastPropsUsed.emailAlreadyUsedToastProps;
     case firebaseErrors.WRONG_PASSWORD:
       return toastPropsUsed.wrongPasswordUsed;
+    case firebaseErrors.TOO_MANY_REQUESTS:
+      return toastPropsUsed.tooManyRequests;
     default:
       return;
   }
@@ -70,3 +75,6 @@ export const showToast = (
       return <Toast id={toastId} {...toastProps} />;
     },
   });
+
+export const determineSuccessfulRequestResult = (res: string | boolean) =>
+  res && typeof res === 'string' && !firebaseErrorsValues.includes(res);
