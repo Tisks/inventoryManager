@@ -77,4 +77,6 @@ export const showToast = (
   });
 
 export const determineSuccessfulRequestResult = (res: string | boolean) =>
-  res && typeof res === 'string' && !firebaseErrorsValues.includes(res);
+  (typeof res === 'boolean' && res) ||
+  (typeof res === 'string' && !firebaseErrorsValues.includes(res));
+
