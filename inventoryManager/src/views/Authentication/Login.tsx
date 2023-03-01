@@ -3,7 +3,10 @@ import React, {useState} from 'react';
 import {UseFormResetField} from 'react-hook-form';
 import {Keyboard} from 'react-native';
 import {WithNavigation} from '../../../App';
-import {signInWithEmailAndPassword} from '../../api/services/user';
+import {
+  signInWithEmailAndPassword,
+  signInWithSocialNetwork,
+} from '../../api/services/user';
 import Divider from '../../common/Divider';
 import CenteredLayout from '../../common/layout/Centered';
 import Form from '../../components/Login/components/Form';
@@ -11,6 +14,7 @@ import {toastId} from '../../components/Login/components/Form/constants';
 import {IFormInputs} from '../../components/Login/components/Form/types';
 import Header from '../../components/Login/components/Header';
 import {GoogleProviderButton} from '../../components/Login/components/ProviderButtons';
+import {providerNames, TProviderNames} from '../../utils/constants';
 import {
   determineSuccessfulRequestResult,
   determineToastProps,
@@ -29,6 +33,8 @@ const Login: React.FC<WithNavigation> = ({navigation}) => {
   ) => {
     Keyboard.dismiss();
 
+    if (!data.email || !data.password) return;
+
     setIsSigningInUser(true);
     const res = await signInWithEmailAndPassword(data);
     setIsSigningInUser(false);
@@ -42,7 +48,10 @@ const Login: React.FC<WithNavigation> = ({navigation}) => {
     }
   };
 
-  const loginWithGoogle = () => {};
+  const loginWithSocialNetwork = async (socialNetwork: string) => {
+    const res = await signInWithSocialNetwork(socialNetwork as TProviderNames);
+    if (res) navigation.navigate('Example');
+  };
   return (
     <CenteredLayout>
       <Header />
@@ -52,7 +61,9 @@ const Login: React.FC<WithNavigation> = ({navigation}) => {
         isLoading={isSigningInUser}
       />
       <Divider mb={6} />
-      <GoogleProviderButton onPress={loginWithGoogle} />
+      <GoogleProviderButton
+        onPress={() => loginWithSocialNetwork(providerNames.Google)}
+      />
     </CenteredLayout>
   );
 };

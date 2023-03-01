@@ -8,3 +8,10 @@ export const routeAndComponent: Record<TRoutes, any> = {
   SignUp: SignUp,
   Example: Example,
 };
+
+export const providerNames = {
+  Google: 'Google',
+  Twitter: 'Twitter'
+}
+
+export type TProviderNames = keyof typeof providerNames
