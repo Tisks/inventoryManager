@@ -8,8 +8,6 @@
  * @format
  */
 
-import Login from './src/views/Authentication/Login';
-import SignUp from './src/views/Authentication/SignUp';
 import React, {useState} from 'react';
 import {NativeBaseProvider} from 'native-base';
 import {Button, Text, useColorScheme, View} from 'react-native';
@@ -17,9 +15,14 @@ import {NavigationContainer} from '@react-navigation/native';
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Example from './src/views/Example';
 import Routes, {outsideMainRoutes, TRoutes} from './src/utils/routes';
 import {routeAndComponent} from './src/utils/constants';
+
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
+
+GoogleSignin.configure({
+  webClientId: "300060932220-imddenlp4ls5bitut4f05o7q4omtiare.apps.googleusercontent.com",
+});
 
 export type TNavigation = NativeStackHeaderProps['navigation'];
 export interface WithNavigation {
