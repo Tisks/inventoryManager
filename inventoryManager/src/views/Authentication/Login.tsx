@@ -6,6 +6,7 @@ import {WithNavigation} from '../../../App';
 import {
   signInWithEmailAndPassword,
   signInWithSocialNetwork,
+  signOut,
 } from '../../api/services/user';
 import Divider from '../../common/Divider';
 import CenteredLayout from '../../common/layout/Centered';
@@ -14,6 +15,7 @@ import {toastId} from '../../components/Login/components/Form/constants';
 import {IFormInputs} from '../../components/Login/components/Form/types';
 import Header from '../../components/Login/components/Header';
 import {GoogleProviderButton} from '../../components/Login/components/ProviderButtons';
+import {useAuthStateChange} from '../../hooks/useAuthStateChange';
 import {providerNames, TProviderNames} from '../../utils/constants';
 import {
   determineSuccessfulRequestResult,
@@ -23,7 +25,7 @@ import {
 
 const Login: React.FC<WithNavigation> = ({navigation}) => {
   const toast = useToast();
-
+  useAuthStateChange(navigation);
   const [isSigningInUser, setIsSigningInUser] = useState(false);
 
   const onSubmit = async (
