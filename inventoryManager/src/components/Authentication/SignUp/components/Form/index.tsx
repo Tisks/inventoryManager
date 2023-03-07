@@ -1,7 +1,7 @@
 import {Button, VStack} from 'native-base';
 import React from 'react';
 import {useForm} from 'react-hook-form';
-import TextInput from '../../../../common/forms/TextInput';
+import TextInput from '../../../../../common/forms/TextInput';
 import {
   creatingUserText,
   formFieldNames,

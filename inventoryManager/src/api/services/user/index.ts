@@ -2,8 +2,8 @@ import {getUserInfo} from './utils';
 import {createDoc} from '../../utils';
 import {USER_COLLECTION} from './routes';
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
-import {ISignUpInputs} from '../../../components/SignUp/components/Form/types';
-import {IFormInputs} from '../../../components/Login/components/Form/types';
+import {ISignUpInputs} from '../../../components/Authentication/SignUp/components/Form/types';
+import {IFormInputs} from '../../../components/Authentication/Login/components/Form/types';
 import {TProviderNames} from '../../../utils/constants';
 import {handleGoogleSignIn} from './utils/provider';
 

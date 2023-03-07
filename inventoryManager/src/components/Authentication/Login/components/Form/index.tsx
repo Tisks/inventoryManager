@@ -2,8 +2,8 @@ import React from 'react';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {Button, Flex, Link, VStack} from 'native-base';
 import {useForm} from 'react-hook-form';
-import {TNavigation, WithNavigation} from '../../../../../App';
-import TextInput from '../../../../common/forms/TextInput';
+import {TNavigation, WithNavigation} from '../../../../../../App';
+import TextInput from '../../../../../common/forms/TextInput';
 import {
   dontHaveAccountText,
   formFieldNames,

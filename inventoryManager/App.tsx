@@ -33,7 +33,6 @@ const App = () => {
 
   const Stack = createNativeStackNavigator();
 
-
   return (
     <NavigationContainer>
       <NativeBaseProvider>

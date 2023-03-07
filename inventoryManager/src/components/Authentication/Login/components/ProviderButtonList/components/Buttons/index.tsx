@@ -2,7 +2,7 @@ import {Button, IButtonProps} from 'native-base';
 import React, {PropsWithChildren} from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {IconProps} from 'react-native-vector-icons/Icon';
-import {providerNames} from '../../../../../../utils/constants';
+import {providerNames} from '../../../../../../../utils/constants';
 import {ProviderButtonListProps} from '../../types';
 
 interface GenericProviderButtonProps extends Omit<IButtonProps, 'onPress'> {

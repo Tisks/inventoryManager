@@ -5,16 +5,16 @@ import {WithNavigation} from '../../../App';
 import {signUpWithEmailAndPassword} from '../../api/services/user';
 import CenteredLayout from '../../common/layout/Centered';
 import {Toast} from '../../common/Toast';
-import Form from '../../components/SignUp/components/Form';
+import Form from '../../components/Authentication/SignUp/components/Form';
 import {
   toastId,
   toastProps,
-} from '../../components/SignUp/components/Form/constants';
+} from '../../components/Authentication/SignUp/components/Form/constants';
 import {
   IFormInputs,
   ISignUpInputs,
-} from '../../components/SignUp/components/Form/types';
-import Header from '../../components/SignUp/components/Header';
+} from '../../components/Authentication/SignUp/components/Form/types';
+import Header from '../../components/Authentication/SignUp/components/Header';
 import {
   determineSuccessfulRequestResult,
   determineToastProps,

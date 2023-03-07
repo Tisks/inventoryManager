@@ -9,11 +9,11 @@ import {
 } from '../../api/services/user';
 import Divider from '../../common/Divider';
 import CenteredLayout from '../../common/layout/Centered';
-import Form from '../../components/Login/components/Form';
-import {toastId} from '../../components/Login/components/Form/constants';
-import {IFormInputs} from '../../components/Login/components/Form/types';
-import Header from '../../components/Login/components/Header';
-import ProviderButtonList from '../../components/Login/components/ProviderButtonList';
+import Form from '../../components/Authentication/Login/components/Form';
+import {toastId} from '../../components/Authentication/Login/components/Form/constants';
+import {IFormInputs} from '../../components/Authentication/Login/components/Form/types';
+import Header from '../../components/Authentication/Login/components/Header';
+import ProviderButtonList from '../../components/Authentication/Login/components/ProviderButtonList';
 import {useAuthStateChange} from '../../hooks/useAuthStateChange';
 import {TProviderNames} from '../../utils/constants';
 import {
