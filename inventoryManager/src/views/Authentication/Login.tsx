@@ -6,7 +6,6 @@ import {WithNavigation} from '../../../App';
 import {
   signInWithEmailAndPassword,
   signInWithSocialNetwork,
-  signOut,
 } from '../../api/services/user';
 import Divider from '../../common/Divider';
 import CenteredLayout from '../../common/layout/Centered';
@@ -14,9 +13,9 @@ import Form from '../../components/Login/components/Form';
 import {toastId} from '../../components/Login/components/Form/constants';
 import {IFormInputs} from '../../components/Login/components/Form/types';
 import Header from '../../components/Login/components/Header';
-import {GoogleProviderButton} from '../../components/Login/components/ProviderButtons';
+import ProviderButtonList from '../../components/Login/components/ProviderButtonList';
 import {useAuthStateChange} from '../../hooks/useAuthStateChange';
-import {providerNames, TProviderNames} from '../../utils/constants';
+import {TProviderNames} from '../../utils/constants';
 import {
   determineSuccessfulRequestResult,
   determineToastProps,
@@ -63,9 +62,7 @@ const Login: React.FC<WithNavigation> = ({navigation}) => {
         isLoading={isSigningInUser}
       />
       <Divider mb={6} />
-      <GoogleProviderButton
-        onPress={() => loginWithSocialNetwork(providerNames.Google)}
-      />
+      <ProviderButtonList loginWithSocialNetwork={loginWithSocialNetwork} />
     </CenteredLayout>
   );
 };

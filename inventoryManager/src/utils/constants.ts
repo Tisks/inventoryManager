@@ -11,7 +11,8 @@ export const routeAndComponent: Record<TRoutes, any> = {
 
 export const providerNames = {
   Google: 'Google',
-  Twitter: 'Twitter'
+  Twitter: 'Twitter',
+  Facebook: 'Facebook'
 }
 
 export type TProviderNames = keyof typeof providerNames
