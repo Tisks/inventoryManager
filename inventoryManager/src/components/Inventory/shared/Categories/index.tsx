@@ -32,16 +32,15 @@ const CategoryWrapper: React.FC<CategoryWrapperProps> = ({
     <Category
       item={item}
       isDrawer={isDrawer}
-      onPress={() => {
-        console.log({item})
+      onPress={() =>
         onCategoryPressed(
           item,
           isDrawer,
           setCategoryItemSelected,
           setSeeAllCategories,
           setIsRecentlyClosedModal,
-        );
-      }}
+        )
+      }
       textProps={textProps}
       boxProps={boxProps}
       iconWidth={iconWidth}
@@ -98,15 +97,14 @@ const Categories: React.FC<CategoriesProps> = ({
             />
           ))}
           {!isDrawer && (
-            <Flex>
+            <Flex alignItems="center">
               <GenericIconButton
                 onPress={() => setSeeAllCategories?.(prev => !prev)}
                 iconName="arrowright"
                 iconColor="green"
                 bgColor="transparent"
                 variant="outline"
-                py={0}
-                h="50%"
+                h="82px"
               />
               <Text>View all</Text>
             </Flex>
