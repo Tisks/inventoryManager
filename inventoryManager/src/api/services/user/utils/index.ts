@@ -1,5 +1,4 @@
 import {FirebaseAuthTypes} from '@react-native-firebase/auth';
-import {TProviderNames} from '../../../utils/constants';
 
 export const getUserInfo = (
   user: FirebaseAuthTypes.User,

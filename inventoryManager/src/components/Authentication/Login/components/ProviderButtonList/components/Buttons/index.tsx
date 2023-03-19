@@ -1,43 +1,23 @@
-import {Button, IButtonProps} from 'native-base';
-import React, {PropsWithChildren} from 'react';
-import Icon from 'react-native-vector-icons/AntDesign';
-import {IconProps} from 'react-native-vector-icons/Icon';
+import React from 'react';
+import {
+  GenericIconButtonProps,
+  GenericIconButton,
+} from '../../../../../../../common/GenericIconButton';
 import {providerNames} from '../../../../../../../utils/constants';
-import {ProviderButtonListProps} from '../../types';
-
-interface GenericProviderButtonProps extends Omit<IButtonProps, 'onPress'> {
-  iconName: string;
-  iconColor?: IconProps['color'];
-  onPress: ProviderButtonListProps['loginWithSocialNetwork'];
-  provider: string;
-}
 
 interface InstantiatedProviderButton
-  extends Pick<GenericProviderButtonProps, 'onPress'> {}
-
-const GenericProviderButton: React.FC<
-  PropsWithChildren<GenericProviderButtonProps>
-> = ({iconName, iconColor, onPress, provider, ...rest}) => {
-  return (
-    <Button
-      py="13px"
-      leftIcon={<Icon name={iconName} size={30} color={iconColor || 'white'} />}
-      onPress={() => onPress(provider)}
-      {...rest}
-    />
-  );
-};
+  extends Pick<GenericIconButtonProps, 'onPress'> {}
 
 export const GoogleProviderButton: React.FC<InstantiatedProviderButton> = ({
   onPress,
 }) => {
   return (
-    <GenericProviderButton
+    <GenericIconButton
       iconName="google"
       onPress={onPress}
       variant="outline"
       bgColor="red.700"
-      provider={providerNames.Google}
+      onPressProps={providerNames.Google}
       width="25%"
     />
   );
@@ -47,12 +27,12 @@ export const TwitterProviderButton: React.FC<InstantiatedProviderButton> = ({
   onPress,
 }) => {
   return (
-    <GenericProviderButton
+    <GenericIconButton
       iconName="twitter"
       onPress={onPress}
       variant="outline"
       bgColor="lightBlue.500"
-      provider={providerNames.Twitter}
+      onPressProps={providerNames.Twitter}
       width="25%"
     />
   );
@@ -62,12 +42,12 @@ export const FacebookProviderButton: React.FC<InstantiatedProviderButton> = ({
   onPress,
 }) => {
   return (
-    <GenericProviderButton
+    <GenericIconButton
       iconName="facebook-square"
       onPress={onPress}
       variant="outline"
       bgColor="darkBlue.600"
-      provider={providerNames.Facebook}
+      onPressProps={providerNames.Facebook}
       width="25%"
     />
   );

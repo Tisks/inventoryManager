@@ -1,30 +1,46 @@
-import {Heading} from 'native-base';
 import React from 'react';
+import {HeaderProps} from './types';
+import {
+  Flex,
+  Input,
+  InputGroup,
+  SearchIcon,
+  InputRightAddon,
+} from 'native-base';
+import Categories from '../../../shared/Categories';
 
-const Example: React.FC = () => {
+const Header: React.FC<HeaderProps> = ({
+  searchText,
+  setSearchText,
+  categoryList,
+  setSeeAllCategories,
+  setIsRecentlyClosedModal,
+  setCategoryItemSelected,
+}) => {
+  const handleChange = (text: string) => setSearchText(text);
+
   return (
-    <>
-      <Heading
-        size="lg"
-        fontWeight="600"
-        color="coolGray.800"
-        _dark={{
-          color: 'warmGray.50',
-        }}>
-        Main page
-      </Heading>
-      <Heading
-        mt="1"
-        _dark={{
-          color: 'warmGray.200',
-        }}
-        color="coolGray.600"
-        fontWeight="medium"
-        size="xs">
-        Here lies the main page
-      </Heading>
-    </>
+    <Flex mt="15px">
+      <InputGroup flexDir="row" justifyContent="center">
+        <Input
+          w="85%"
+          backgroundColor="white"
+          placeholder="Search for specific item"
+          value={searchText}
+          onChangeText={handleChange}
+        />
+        <InputRightAddon
+          children={<SearchIcon size="5" mt="0.5" color="emerald.500" />}
+        />
+      </InputGroup>
+      <Categories
+        categoryList={categoryList}
+        setSeeAllCategories={setSeeAllCategories}
+        setIsRecentlyClosedModal={setIsRecentlyClosedModal}
+        setCategoryItemSelected={setCategoryItemSelected}
+      />
+    </Flex>
   );
 };
 
-export default Example;
+export default Header;

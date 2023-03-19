@@ -2,7 +2,7 @@ import {TCollection} from '../../types';
 import firestore, {
   FirebaseFirestoreTypes,
 } from '@react-native-firebase/firestore';
-import { TLooseObject } from '../../types/general';
+import {TLooseObject} from '../../types/general';
 
 enum EDocMethods {
   DELETE = 'deleted',
@@ -79,6 +79,14 @@ export const getFilteredDoc = async (
 export const getDoc = async (collectionName: TCollection, docId: string) => {
   try {
     return await doc(collectionName, docId).get();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getAllDocs = async (collectionName: TCollection) => {
+  try {
+    return await collection(collectionName).get();
   } catch (error) {
     console.log(error);
   }
