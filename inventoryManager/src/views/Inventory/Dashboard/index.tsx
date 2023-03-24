@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
+import {WithNavigation} from '../../../../App';
 import {getAllCategories} from '../../../api/services/category';
 import Header from '../../../components/Inventory/Dashboard/components/Header';
 import Modal from '../../../components/Inventory/shared/Categories/components/Modal';
 import {setCurrentCategory} from '../../../components/Inventory/shared/Categories/utils';
+import {useAuthStateChange} from '../../../hooks/useAuthStateChange';
 import {
   Product,
   CategoryItem,
@@ -12,8 +14,10 @@ import {
 } from '../../../types/product';
 const categoryNumberShown = 3;
 
-const Dashboard: React.FC = () => {
+const Dashboard: React.FC<WithNavigation> = ({navigation}) => {
   const [searchText, setSearchText] = useState('');
+  useAuthStateChange(navigation);
+
   const [productList, setProductList] = useState<Product[]>([]);
   const [categoryListAll, setCategoryListAll] = useState<CategoryItem[]>([]);
   const [categoryListBar, setCategoryListBar] = useState<CategoryItem[]>([]);
@@ -126,5 +130,7 @@ const Dashboard: React.FC = () => {
     </>
   );
 };
+
+Dashboard.displayName = 'Dashboard';
 
 export default Dashboard;

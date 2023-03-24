@@ -45,13 +45,13 @@ const Login: React.FC<WithNavigation> = ({navigation}) => {
     if (props) {
       resetField(fieldToBeReset);
       showToast(toast, toastId, props);
-      determineSuccessfulRequestResult(res) && navigation.navigate('Example');
+      determineSuccessfulRequestResult(res) && navigation.navigate('Dashboard');
     }
   };
 
   const loginWithSocialNetwork = async (socialNetwork: string) => {
     const res = await signInWithSocialNetwork(socialNetwork as TProviderNames);
-    if (res) navigation.navigate('Example');
+    if (res) navigation.navigate('Dashboard');
   };
   return (
     <CenteredLayout>
@@ -66,5 +66,7 @@ const Login: React.FC<WithNavigation> = ({navigation}) => {
     </CenteredLayout>
   );
 };
+
+Login.displayName = 'Login';
 
 export default Login;

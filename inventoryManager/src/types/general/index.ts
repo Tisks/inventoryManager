@@ -8,3 +8,10 @@ export type TUseToast = {
   closeAll: () => void;
   isActive: (id: any) => boolean;
 };
+
+
+export type TSection = {
+  name: string;
+  icon: string;
+  
+}

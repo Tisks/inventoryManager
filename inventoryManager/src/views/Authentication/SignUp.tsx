@@ -45,7 +45,7 @@ const SignUp: React.FC<WithNavigation> = ({navigation}) => {
     if (props) {
       resetForm();
       showToast(toast, toastId, props);
-      determineSuccessfulRequestResult(res) && navigation.navigate('Example');
+      determineSuccessfulRequestResult(res) && navigation.navigate('Dashboard');
     }
   };
   return (
@@ -59,5 +59,7 @@ const SignUp: React.FC<WithNavigation> = ({navigation}) => {
     </CenteredLayout>
   );
 };
+
+SignUp.displayName = 'SignUp';
 
 export default SignUp;

@@ -13,10 +13,21 @@ import {NativeBaseProvider} from 'native-base';
 import {NavigationContainer} from '@react-navigation/native';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Routes, {outsideMainRoutes, TRoutes} from './src/utils/routes';
-import {routeAndComponent} from './src/utils/constants';
-
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import {Text, View} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import {
+  AllRoutes,
+  AuthRoutes,
+  TAllRoutes,
+  TAuthRoutes,
+} from './src/utils/routes';
+import {
+  allRouteAndComponent,
+  authRouteAndComponent,
+} from './src/utils/constants';
+import Dashboard from './src/views/Inventory/Dashboard';
 
 GoogleSignin.configure({
   webClientId:
@@ -28,24 +39,53 @@ export interface WithNavigation {
   navigation: TNavigation;
 }
 
+function HomeScreen() {
+  return (
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Text>Home!</Text>
+    </View>
+  );
+}
+
+function SettingsScreen() {
+  return (
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Text>Settings!</Text>
+    </View>
+  );
+}
+
+const Tab = createBottomTabNavigator();
+
+function InventoryTabs() {
+  return (
+    <Tab.Navigator
+      screenOptions={() => ({
+        tabBarIcon: ({color, size}) => {
+          let iconName = 'facebook';
+          // You can return any component that you like here!
+          return <Icon name={iconName} size={size} color={color} />;
+        },
+        headerShown: false,
+      })}>
+      <Tab.Screen name="Dashboard" component={Dashboard} />
+    </Tab.Navigator>
+  );
+}
+const Stack = createNativeStackNavigator();
+console.log(Object.keys(AuthRoutes));
 const App = () => {
-  const [selected, setSelected] = useState(1);
-
-  const Stack = createNativeStackNavigator();
-
   return (
     <NavigationContainer>
       <NativeBaseProvider>
-        <Stack.Navigator initialRouteName={Routes.Login}>
-          {Object.keys(Routes).map((route, index) => {
+        <Stack.Navigator>
+          <Stack.Screen name="Inventory" component={InventoryTabs} />
+          {Object.keys(AuthRoutes).map((route, index) => {
             return (
               <Stack.Screen
-                name={Routes[route as TRoutes]}
-                component={routeAndComponent[route as TRoutes]}
-                options={() => ({
-                  headerBackVisible: outsideMainRoutes.includes(route),
-                })}
                 key={index}
+                name={authRouteAndComponent[route as TAuthRoutes].displayName}
+                component={authRouteAndComponent[route as TAuthRoutes]}
               />
             );
           })}
