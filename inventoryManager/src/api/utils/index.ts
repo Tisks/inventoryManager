@@ -1,8 +1,8 @@
-import {TCollection} from '../../types';
 import firestore, {
-  FirebaseFirestoreTypes,
+  FirebaseFirestoreTypes
 } from '@react-native-firebase/firestore';
-import {TLooseObject} from '../../types/general';
+import { TCollection } from '../../types';
+import { TLooseObject } from '../../types/general';
 
 enum EDocMethods {
   DELETE = 'deleted',

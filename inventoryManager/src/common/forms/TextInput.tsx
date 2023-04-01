@@ -1,7 +1,7 @@
-import {FormControl, Input} from 'native-base';
-import {ColorType} from 'native-base/lib/typescript/components/types';
-import React, {type PropsWithChildren} from 'react';
-import {Controller, ControllerProps} from 'react-hook-form';
+import { FormControl, Input } from 'native-base';
+import { ColorType } from 'native-base/lib/typescript/components/types';
+import React, { type PropsWithChildren } from 'react';
+import { Controller, ControllerProps } from 'react-hook-form';
 
 export type TInput = 'text' | 'password';
 export interface ITextInputProps {

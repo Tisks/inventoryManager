@@ -1,16 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {WithNavigation} from '../../../../App';
-import {getAllCategories} from '../../../api/services/category';
+import React, { useEffect, useState } from 'react';
+import { WithNavigation } from '../../../../App';
+import { getAllCategories } from '../../../api/services/category';
 import Header from '../../../components/Inventory/Dashboard/components/Header';
 import Modal from '../../../components/Inventory/shared/Categories/components/Modal';
-import {setCurrentCategory} from '../../../components/Inventory/shared/Categories/utils';
-import {useAuthStateChange} from '../../../hooks/useAuthStateChange';
+import { setCurrentCategory } from '../../../components/Inventory/shared/Categories/utils';
+import { useAuthStateChange } from '../../../hooks/useAuthStateChange';
 import {
-  Product,
-  CategoryItem,
-  ProductExpirationQuantityRow,
+  CategoryItem, Product, ProductExpirationQuantityRow,
   timeIntervals,
-  UnitEnumAbbr,
+  UnitEnumAbbr
 } from '../../../types/product';
 const categoryNumberShown = 3;
 

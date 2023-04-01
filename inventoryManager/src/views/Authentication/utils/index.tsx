@@ -1,12 +1,12 @@
 import {
   firebaseErrors,
-  firebaseErrorsValues,
+  firebaseErrorsValues
 } from '../../../api/services/user/constants';
-import {toastProps as SignUpToastProps} from '../../../components/Authentication/SignUp/components/Form/constants';
-import {toastProps as LoginToastProps} from '../../../components/Authentication/Login/components/Form/constants';
-import {Toast} from '../../../common/Toast';
-import {TLooseObject, TUseToast} from '../../../types/general';
-import {isObjectEmpty} from '../../../utils/general';
+import { Toast } from '../../../common/Toast';
+import { toastProps as LoginToastProps } from '../../../components/Authentication/Login/components/Form/constants';
+import { toastProps as SignUpToastProps } from '../../../components/Authentication/SignUp/components/Form/constants';
+import { TLooseObject, TUseToast } from '../../../types/general';
+import { isObjectEmpty } from '../../../utils/general';
 
 export const TComponent = {
   LOGIN: 'LOGIN',

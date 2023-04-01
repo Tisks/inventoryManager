@@ -1,7 +1,7 @@
-import {Button, IButtonProps} from 'native-base';
-import React, {PropsWithChildren} from 'react';
+import { Button, IButtonProps } from 'native-base';
+import React, { PropsWithChildren } from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {IconProps} from 'react-native-vector-icons/Icon';
+import { IconProps } from 'react-native-vector-icons/Icon';
 
 export interface GenericIconButtonProps extends Omit<IButtonProps, 'onPress'> {
   iconName: string;

@@ -8,25 +8,20 @@
  * @format
  */
 
-import React, {useState} from 'react';
-import {NativeBaseProvider} from 'native-base';
-import {NavigationContainer} from '@react-navigation/native';
-import {NativeStackHeaderProps} from '@react-navigation/native-stack';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import {Text, View} from 'react-native';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator, NativeStackHeaderProps } from '@react-navigation/native-stack';
+import { NativeBaseProvider } from 'native-base';
+import React from 'react';
+import { Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {
-  AllRoutes,
-  AuthRoutes,
-  TAllRoutes,
-  TAuthRoutes,
-} from './src/utils/routes';
-import {
-  allRouteAndComponent,
-  authRouteAndComponent,
+  authRouteAndComponent
 } from './src/utils/constants';
+import {
+  AuthRoutes, TAuthRoutes
+} from './src/utils/routes';
 import Dashboard from './src/views/Inventory/Dashboard';
 
 GoogleSignin.configure({
@@ -62,7 +57,7 @@ function InventoryTabs() {
     <Tab.Navigator
       screenOptions={() => ({
         tabBarIcon: ({color, size}) => {
-          let iconName = 'facebook';
+          let iconName = 'clipboard-list';
           // You can return any component that you like here!
           return <Icon name={iconName} size={size} color={color} />;
         },
@@ -73,7 +68,6 @@ function InventoryTabs() {
   );
 }
 const Stack = createNativeStackNavigator();
-console.log(Object.keys(AuthRoutes));
 const App = () => {
   return (
     <NavigationContainer>

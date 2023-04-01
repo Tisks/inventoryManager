@@ -1,4 +1,4 @@
-import {Heading} from 'native-base';
+import { Heading } from 'native-base';
 import React from 'react';
 
 const Header = () => {

@@ -1,6 +1,6 @@
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import {createUserDocument} from '..';
 import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { createUserDocument } from '..';
 
 export const handleGoogleSignIn = async () => {
   // Check if your device supports Google Play

@@ -1,13 +1,11 @@
-import React from 'react';
-import {HeaderProps} from './types';
 import {
   Flex,
   Input,
-  InputGroup,
-  SearchIcon,
-  InputRightAddon,
+  InputGroup, InputRightAddon, SearchIcon
 } from 'native-base';
+import React from 'react';
 import Categories from '../../../shared/Categories';
+import { HeaderProps } from './types';
 
 const Header: React.FC<HeaderProps> = ({
   searchText,

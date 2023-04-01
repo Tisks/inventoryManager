@@ -1,7 +1,7 @@
+import { Box, Button, Flex, Text } from 'native-base';
 import React from 'react';
-import {Box, Button, Flex, Text} from 'native-base';
-import {CategoryProps} from './types';
-import {Image} from 'react-native';
+import { Image } from 'react-native';
+import { CategoryProps } from './types';
 
 const Category: React.FC<CategoryProps> = ({
   item,

@@ -1,5 +1,5 @@
-import {Center, Box} from 'native-base';
-import React, {PropsWithChildren} from 'react';
+import { Box, Center } from 'native-base';
+import React, { PropsWithChildren } from 'react';
 
 const CenteredLayout: React.FC<PropsWithChildren> = ({children}) => (
   <Center w="100%" h="90%">

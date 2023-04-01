@@ -1,9 +1,8 @@
 import React from 'react';
 import {
-  GenericIconButtonProps,
-  GenericIconButton,
+  GenericIconButton, GenericIconButtonProps
 } from '../../../../../../../common/GenericIconButton';
-import {providerNames} from '../../../../../../../utils/constants';
+import { providerNames } from '../../../../../../../utils/constants';
 
 interface InstantiatedProviderButton
   extends Pick<GenericIconButtonProps, 'onPress'> {}

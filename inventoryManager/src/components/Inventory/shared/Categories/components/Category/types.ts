@@ -1,6 +1,6 @@
-import {CategoryItem} from '../../../../../../types/product';
-import {InterfaceBoxProps} from 'native-base/lib/typescript/components/primitives/Box';
-import {InterfaceTextProps} from 'native-base/lib/typescript/components/primitives/Text/types';
+import { InterfaceBoxProps } from 'native-base/lib/typescript/components/primitives/Box';
+import { InterfaceTextProps } from 'native-base/lib/typescript/components/primitives/Text/types';
+import { CategoryItem } from '../../../../../../types/product';
 
 export interface CategoryProps {
   item: CategoryItem;

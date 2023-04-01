@@ -1,11 +1,11 @@
-import {getUserInfo} from './utils';
-import {createDoc} from '../../utils';
-import {USER_COLLECTION} from './routes';
-import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
-import {ISignUpInputs} from '../../../components/Authentication/SignUp/components/Form/types';
-import {IFormInputs} from '../../../components/Authentication/Login/components/Form/types';
-import {TProviderNames} from '../../../utils/constants';
-import {handleGoogleSignIn} from './utils/provider';
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { IFormInputs } from '../../../components/Authentication/Login/components/Form/types';
+import { ISignUpInputs } from '../../../components/Authentication/SignUp/components/Form/types';
+import { TProviderNames } from '../../../utils/constants';
+import { createDoc } from '../../utils';
+import { USER_COLLECTION } from './routes';
+import { getUserInfo } from './utils';
+import { handleGoogleSignIn } from './utils/provider';
 
 export const createUserDocument = async (
   res: FirebaseAuthTypes.UserCredential,

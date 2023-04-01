@@ -1,11 +1,11 @@
-import React, {PropsWithChildren} from 'react';
+import React, { PropsWithChildren } from 'react';
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  useColorScheme,
+  useColorScheme
 } from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const GenericLayout: React.FC<PropsWithChildren> = ({children}) => {
   const isDarkMode = useColorScheme() === 'dark';

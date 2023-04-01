@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import {TInput} from '../../../../../common/forms/TextInput';
+import { TInput } from '../../../../../common/forms/TextInput';
 
 export const formFieldNames = {
   email: '',

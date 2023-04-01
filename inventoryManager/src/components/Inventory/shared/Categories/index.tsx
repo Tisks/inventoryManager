@@ -1,12 +1,11 @@
+import { Box, Flex, Text } from 'native-base';
 import React from 'react';
-import {Box, Flex, Text} from 'native-base';
-import {CategoriesProps, CategoryWrapperProps} from './types';
+import { FlatList, LogBox } from 'react-native';
+import { GenericIconButton } from '../../../../common/GenericIconButton';
+import { CategoryItem } from '../../../../types/product';
 import Category from './components/Category';
-import {CategoryItem} from '../../../../types/product';
-import {FlatList} from 'react-native';
-import {onCategoryPressed} from './utils';
-import {LogBox} from 'react-native';
-import {GenericIconButton} from '../../../../common/GenericIconButton';
+import { CategoriesProps, CategoryWrapperProps } from './types';
+import { onCategoryPressed } from './utils';
 LogBox.ignoreLogs([
   'VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead.',
 ]);

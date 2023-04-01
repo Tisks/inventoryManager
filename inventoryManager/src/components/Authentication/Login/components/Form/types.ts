@@ -1,5 +1,5 @@
-import {UseFormReset, UseFormResetField} from 'react-hook-form';
-import {WithNavigation} from '../../../../../../App';
+import { UseFormResetField } from 'react-hook-form';
+import { WithNavigation } from '../../../../../../App';
 
 export interface IFormInputs {
   email: string;

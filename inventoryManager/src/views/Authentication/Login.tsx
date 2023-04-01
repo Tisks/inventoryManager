@@ -1,25 +1,25 @@
-import {useToast} from 'native-base';
-import React, {useState} from 'react';
-import {UseFormResetField} from 'react-hook-form';
-import {Keyboard} from 'react-native';
-import {WithNavigation} from '../../../App';
+import { useToast } from 'native-base';
+import React, { useState } from 'react';
+import { UseFormResetField } from 'react-hook-form';
+import { Keyboard } from 'react-native';
+import { WithNavigation } from '../../../App';
 import {
   signInWithEmailAndPassword,
-  signInWithSocialNetwork,
+  signInWithSocialNetwork
 } from '../../api/services/user';
 import Divider from '../../common/Divider';
 import CenteredLayout from '../../common/layout/Centered';
 import Form from '../../components/Authentication/Login/components/Form';
-import {toastId} from '../../components/Authentication/Login/components/Form/constants';
-import {IFormInputs} from '../../components/Authentication/Login/components/Form/types';
+import { toastId } from '../../components/Authentication/Login/components/Form/constants';
+import { IFormInputs } from '../../components/Authentication/Login/components/Form/types';
 import Header from '../../components/Authentication/Login/components/Header';
 import ProviderButtonList from '../../components/Authentication/Login/components/ProviderButtonList';
-import {useAuthStateChange} from '../../hooks/useAuthStateChange';
-import {TProviderNames} from '../../utils/constants';
+import { useAuthStateChange } from '../../hooks/useAuthStateChange';
+import { TProviderNames } from '../../utils/constants';
 import {
   determineSuccessfulRequestResult,
   determineToastProps,
-  showToast,
+  showToast
 } from './utils';
 
 const Login: React.FC<WithNavigation> = ({navigation}) => {

@@ -1,16 +1,16 @@
-import {Button, VStack} from 'native-base';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Button, VStack } from 'native-base';
 import React from 'react';
-import {useForm} from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import TextInput from '../../../../../common/forms/TextInput';
 import {
   creatingUserText,
   formFieldNames,
   formProps,
   signUpText,
-  validationSchema,
+  validationSchema
 } from './constants';
-import {IFormInputs, IFormProps} from './types';
-import {yupResolver} from '@hookform/resolvers/yup';
+import { IFormInputs, IFormProps } from './types';
 
 const Form: React.FC<IFormProps> = ({onSubmit, isLoading}) => {
   const {

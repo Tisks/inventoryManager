@@ -1,4 +1,4 @@
-import {CategoriesProps} from '../../types';
+import { CategoriesProps } from '../../types';
 
 export interface ModalProps
   extends Omit<CategoriesProps, 'categoryNumberShown' | 'display'> {

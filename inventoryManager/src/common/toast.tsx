@@ -1,15 +1,7 @@
-import React from 'react';
 import {
-  VStack,
-  HStack,
-  Text,
-  IconButton,
-  CloseIcon,
-  Alert,
-  useToast,
-  IAlertProps,
-  IToastProps,
+  Alert, CloseIcon, HStack, IAlertProps, IconButton, IToastProps, Text, useToast, VStack
 } from 'native-base';
+import React from 'react';
 
 export interface ToastProps
   extends Pick<IAlertProps, 'status' | 'variant'>,

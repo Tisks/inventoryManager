@@ -1,8 +1,8 @@
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Button, Flex, Link, VStack } from 'native-base';
 import React from 'react';
-import {yupResolver} from '@hookform/resolvers/yup';
-import {Button, Flex, Link, VStack} from 'native-base';
-import {useForm} from 'react-hook-form';
-import {TNavigation, WithNavigation} from '../../../../../../App';
+import { useForm } from 'react-hook-form';
+import { TNavigation } from '../../../../../../App';
 import TextInput from '../../../../../common/forms/TextInput';
 import {
   dontHaveAccountText,
@@ -11,9 +11,9 @@ import {
   loginInUserText,
   loginText,
   signUpText,
-  validationSchema,
+  validationSchema
 } from './constants';
-import {IFormProps, IFormInputs} from './types';
+import { IFormInputs, IFormProps } from './types';
 
 const SignUpLink: React.FC<{navigation: TNavigation}> = ({navigation}) => (
   <Flex flexDir="row" justifyContent="flex-end">

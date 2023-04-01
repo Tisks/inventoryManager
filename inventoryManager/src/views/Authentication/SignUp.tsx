@@ -1,26 +1,25 @@
-import {Keyboard} from 'react-native';
-import {useToast} from 'native-base';
-import React, {useState} from 'react';
-import {WithNavigation} from '../../../App';
-import {signUpWithEmailAndPassword} from '../../api/services/user';
+import { useToast } from 'native-base';
+import React, { useState } from 'react';
+import { UseFormReset } from 'react-hook-form';
+import { Keyboard } from 'react-native';
+import { WithNavigation } from '../../../App';
+import { signUpWithEmailAndPassword } from '../../api/services/user';
 import CenteredLayout from '../../common/layout/Centered';
-import {Toast} from '../../common/Toast';
 import Form from '../../components/Authentication/SignUp/components/Form';
 import {
   toastId,
-  toastProps,
+  toastProps
 } from '../../components/Authentication/SignUp/components/Form/constants';
 import {
   IFormInputs,
-  ISignUpInputs,
+  ISignUpInputs
 } from '../../components/Authentication/SignUp/components/Form/types';
 import Header from '../../components/Authentication/SignUp/components/Header';
 import {
   determineSuccessfulRequestResult,
   determineToastProps,
-  showToast,
+  showToast
 } from './utils';
-import {UseFormReset} from 'react-hook-form';
 
 const SignUp: React.FC<WithNavigation> = ({navigation}) => {
   const toast = useToast();

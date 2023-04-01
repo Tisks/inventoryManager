@@ -1,8 +1,8 @@
-import React, {FC} from 'react';
+import { FC } from 'react';
 import Login from '../views/Authentication/Login';
 import SignUp from '../views/Authentication/SignUp';
 import Dashboard from '../views/Inventory/Dashboard';
-import {AllRoutes, AuthRoutes, InventoryRoutes} from './routes';
+import { AllRoutes, AuthRoutes, InventoryRoutes } from './routes';
 
 export const allRouteAndComponent: Record<
   AllRoutes,

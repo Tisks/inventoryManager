@@ -1,8 +1,8 @@
+import { Modal as NativeBaseModal } from 'native-base';
 import React from 'react';
-import {CategoryItem} from '../../../../../../types/product';
-import {ModalProps} from './types';
-import {Modal as NativeBaseModal} from 'native-base';
 import Categories from '../..';
+import { CategoryItem } from '../../../../../../types/product';
+import { ModalProps } from './types';
 
 export const title = 'Categories';
 

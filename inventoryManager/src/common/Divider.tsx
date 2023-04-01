@@ -1,5 +1,5 @@
-import {Divider as NativeDivider, Flex, Text} from 'native-base';
-import {InterfaceBoxProps} from 'native-base/lib/typescript/components/primitives/Box';
+import { Divider as NativeDivider, Flex, Text } from 'native-base';
+import { InterfaceBoxProps } from 'native-base/lib/typescript/components/primitives/Box';
 import React from 'react';
 
 interface IDividerProps
