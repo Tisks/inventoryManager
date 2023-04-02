@@ -1,7 +1,10 @@
 export enum AllRoutes {
   Login = 'Login',
   SignUp = 'SignUp',
-  Dashboard = 'Dashboard',
+  ManagementDashboard = 'ManagementDashboard',
+  InventoryDashboard = 'InventoryDashboard',
+  Group = 'Group',
+  Inventory = 'Inventory',
 }
 export type TAllRoutes = keyof typeof AllRoutes;
 
@@ -11,11 +14,15 @@ export enum AuthRoutes {
 }
 export type TAuthRoutes = keyof typeof AuthRoutes;
 
-export enum ManagementRoutes {}
+export enum ManagementRoutes {
+  ManagementDashboard = 'ManagementDashboard',
+  Group = 'Group',
+  Inventory = 'Inventory',
+}
 export type TManagementRoutes = keyof typeof ManagementRoutes;
 
 export enum InventoryRoutes {
-  Dashboard = 'Dashboard',
+  InventoryDashboard = 'InventoryDashboard',
 }
 export type TInventoryRoutes = keyof typeof InventoryRoutes;
 
@@ -23,6 +30,11 @@ export enum NoNavigationBarRoutes {
   Dashboard = 'Dashboard',
 }
 export type TNoNavigationBarRoutes = keyof typeof NoNavigationBarRoutes;
+
+export const outsideMainRoutes = [
+  AuthRoutes.Login,
+  AuthRoutes.SignUp,
+] as string[];
 
 /*
   DASHBOARD = '/dashboard',
@@ -39,7 +51,3 @@ export type TNoNavigationBarRoutes = keyof typeof NoNavigationBarRoutes;
   TESTING_AREA = '/testing-area',
 
 */
-export const outsideMainRoutes = [
-  AuthRoutes.Login,
-  AuthRoutes.SignUp,
-] as string[];

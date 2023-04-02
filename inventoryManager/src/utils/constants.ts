@@ -1,8 +1,16 @@
 import { FC } from 'react';
+import {
+  AllRoutes,
+  AuthRoutes,
+  InventoryRoutes,
+  ManagementRoutes
+} from '../routes';
 import Login from '../views/Authentication/Login';
 import SignUp from '../views/Authentication/SignUp';
-import Dashboard from '../views/Inventory/Dashboard';
-import { AllRoutes, AuthRoutes, InventoryRoutes } from './routes';
+import { InventoryDashboard } from '../views/Inventory/Dashboard';
+import { ManagementDashboard } from '../views/Management/Dashboard';
+import Group from '../views/Management/Group';
+import Inventory from '../views/Management/Inventory';
 
 export const allRouteAndComponent: Record<
   AllRoutes,
@@ -10,16 +18,34 @@ export const allRouteAndComponent: Record<
 > = {
   Login: {component: Login, icon: ''},
   SignUp: {component: SignUp, icon: ''},
-  Dashboard: {component: Dashboard, icon: ''},
+  InventoryDashboard: {component: InventoryDashboard, icon: 'clipboard-list'},
+  ManagementDashboard: {
+    component: ManagementDashboard,
+    icon: '',
+  },
+  Group: {
+    component: Group,
+    icon: '',
+  },
+  Inventory: {
+    component: Inventory,
+    icon: '',
+  },
 };
 
 export const authRouteAndComponent: Record<AuthRoutes, any> = {
-  Login: Login,
-  SignUp: SignUp,
+  Login,
+  SignUp,
 };
 
 export const inventoryRouteAndComponent: Record<InventoryRoutes, any> = {
-  Dashboard: Dashboard,
+  InventoryDashboard,
+};
+
+export const managementRouteAndComponent: Record<ManagementRoutes, any> = {
+  ManagementDashboard,
+  Group,
+  Inventory,
 };
 
 export const providerNames = {

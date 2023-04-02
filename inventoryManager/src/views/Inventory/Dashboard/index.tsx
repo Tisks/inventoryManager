@@ -10,9 +10,8 @@ import {
   timeIntervals,
   UnitEnumAbbr
 } from '../../../types/product';
-const categoryNumberShown = 3;
 
-const Dashboard: React.FC<WithNavigation> = ({navigation}) => {
+export const InventoryDashboard: React.FC<WithNavigation> = ({navigation}) => {
   const [searchText, setSearchText] = useState('');
   useAuthStateChange(navigation);
 
@@ -129,6 +128,4 @@ const Dashboard: React.FC<WithNavigation> = ({navigation}) => {
   );
 };
 
-Dashboard.displayName = 'Dashboard';
-
-export default Dashboard;
+InventoryDashboard.displayName = 'Dashboard'
