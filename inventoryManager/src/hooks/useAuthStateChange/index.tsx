@@ -10,7 +10,7 @@ export const useAuthStateChange = (navigation: TNavigation) => {
   useEffect(() => {
     const unsubscribeOnAuthStateChanged = auth().onAuthStateChanged(
       async (user: any) => {
-        if (user) navigation.navigate('Inventory', {screen: 'Dashboard'});
+        if (user) navigation.navigate('Management', {screen: 'Dashboard'});
         else navigation.navigate('Login')
       },
     );
