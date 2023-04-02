@@ -7,6 +7,7 @@ import {
     TManagementRoutes
 } from '.';
 import {
+    allRouteAndComponent,
     inventoryRouteAndComponent,
     managementRouteAndComponent
 } from '../utils/constants';
@@ -39,10 +40,13 @@ export const InventoryTabs = () => (
 
 export const ManagementTabs = () => (
   <Tab.Navigator
-    screenOptions={() => ({
+    screenOptions={({route}) => ({
       tabBarIcon: ({color, size}) => {
-        let iconName = 'clipboard-list';
-        // You can return any component that you like here!
+        const icon =
+          allRouteAndComponent[route.name as TManagementRoutes]?.icon;
+
+        const iconName = icon || 'clipboard-list';
+
         return <Icon name={iconName} size={size} color={color} />;
       },
       headerShown: false,

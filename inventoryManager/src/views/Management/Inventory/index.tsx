@@ -1,8 +1,9 @@
+import { Text } from 'native-base';
 import React from 'react';
 import { WithNavigation } from '../../../../App';
 
 const Inventory: React.FC<WithNavigation> = ({navigation}) => {
-  return <>inventory</>;
+  return <Text>inventory</Text>;
 };
 
 Inventory.displayName = 'Inventory';

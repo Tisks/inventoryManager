@@ -21,15 +21,15 @@ export const allRouteAndComponent: Record<
   InventoryDashboard: {component: InventoryDashboard, icon: 'clipboard-list'},
   ManagementDashboard: {
     component: ManagementDashboard,
-    icon: '',
+    icon: 'clipboard-list',
   },
   Group: {
     component: Group,
-    icon: '',
+    icon: 'people-carry',
   },
   Inventory: {
     component: Inventory,
-    icon: '',
+    icon: 'square',
   },
 };
 
