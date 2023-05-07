@@ -1,7 +1,6 @@
-import { FormControl, Input } from 'native-base';
-import { ColorType } from 'native-base/lib/typescript/components/types';
-import React, { type PropsWithChildren } from 'react';
-import { Controller, ControllerProps } from 'react-hook-form';
+import {Caption, TextInput as PaperTextInput} from 'react-native-paper';
+import React, {PropsWithChildren} from 'react';
+import {Controller, ControllerProps} from 'react-hook-form';
 
 export type TInput = 'text' | 'password';
 export interface ITextInputProps {
@@ -15,7 +14,7 @@ export interface ITextInputProps {
     ControllerProps,
     'render' | 'name' | 'control' | 'errors'
   >;
-  backgroundColor?: ColorType;
+  backgroundColor?: string;
 }
 
 export interface ITextInputFormProps
@@ -33,27 +32,27 @@ const TextInput: React.FC<PropsWithChildren<ITextInputProps>> = ({
   backgroundColor = 'white',
 }) => {
   return (
-    <FormControl isRequired={isRequired} isInvalid={value in errors}>
-      <FormControl.Label>{label}</FormControl.Label>
+    <>
       <Controller
         render={({field: {onChange, onBlur, value}}) => (
-          <Input
-            onBlur={onBlur}
-            onChangeText={val => onChange(val)}
+          <PaperTextInput
+            label={label}
             value={String(value)}
-            type={inputType || 'text'}
-            backgroundColor={backgroundColor}
+            onChangeText={val => onChange(val)}
+            onBlur={onBlur}
+            secureTextEntry={inputType === 'password'}
+            error={value in errors}
+            theme={{colors: {primary: 'blue'}}}
+            style={{backgroundColor}}
           />
         )}
         name={value}
         control={control}
         {...controllerProps}
       />
-      <FormControl.ErrorMessage>
-        {errors[value]?.message}
-      </FormControl.ErrorMessage>
+      <Caption>{errors[value]?.message}</Caption>
       {children}
-    </FormControl>
+    </>
   );
 };
 

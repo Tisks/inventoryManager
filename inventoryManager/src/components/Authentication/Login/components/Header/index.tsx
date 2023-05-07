@@ -1,28 +1,26 @@
-import { Heading } from 'native-base';
-import React from 'react';
+import * as React from 'react';
+import {StyleSheet} from 'react-native';
+import {Headline, Caption} from 'react-native-paper';
 
-const Header: React.FC = () => (
+const Header = () => (
   <>
-    <Heading
-      size="lg"
-      fontWeight="600"
-      color="coolGray.800"
-      _dark={{
-        color: 'warmGray.50',
-      }}>
-      Welcome
-    </Heading>
-    <Heading
-      mt="1"
-      _dark={{
-        color: 'warmGray.200',
-      }}
-      color="coolGray.600"
-      fontWeight="medium"
-      size="xs">
-      Sign in to continue!
-    </Heading>
+    <Headline style={styles.headline}>Welcome</Headline>
+    <Caption style={styles.caption}>Sign in to continue!</Caption>
   </>
 );
+
+const styles = StyleSheet.create({
+  headline: {
+    fontSize: 32,
+    fontWeight: '600',
+    color: '#374151',
+  },
+  caption: {
+    marginTop: 4,
+    fontSize: 12,
+    fontWeight: '500',
+    color: '#6B7280',
+  },
+});
 
 export default Header;

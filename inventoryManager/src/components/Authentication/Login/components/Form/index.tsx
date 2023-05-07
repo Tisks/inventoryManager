@@ -1,9 +1,9 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Flex, Link, VStack } from 'native-base';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {Button, Text} from 'react-native-paper';
+import {Flex, View} from 'native-base';
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import { TNavigation } from '../../../../../../App';
-import TextInput from '../../../../../common/forms/TextInput';
+import {useForm} from 'react-hook-form';
+import {TNavigation} from '../../../../../../App';
 import {
   dontHaveAccountText,
   formFieldNames,
@@ -11,21 +11,24 @@ import {
   loginInUserText,
   loginText,
   signUpText,
-  validationSchema
+  validationSchema,
 } from './constants';
-import { IFormInputs, IFormProps } from './types';
+import {IFormInputs, IFormProps} from './types';
+import TextInput from '../../../../../common/forms/TextInput';
+import {StyleSheet} from 'react-native';
 
 const SignUpLink: React.FC<{navigation: TNavigation}> = ({navigation}) => (
-  <Flex flexDir="row" justifyContent="flex-end">
-    {dontHaveAccountText}
-    <Link
-      _text={{
-        color: 'indigo.500',
+  <Flex flexDirection="row" justifyContent="flex-end">
+    <Text>{dontHaveAccountText}</Text>
+    <Text
+      style={{
+        color: 'blue',
+        marginLeft: 4,
+        textDecorationLine: 'underline',
       }}
-      ml="1"
       onPress={() => navigation.push('SignUp')}>
       {signUpText}
-    </Link>
+    </Text>
   </Flex>
 );
 
@@ -34,31 +37,39 @@ const Form: React.FC<IFormProps> = ({onSubmit, navigation, isLoading}) => {
     control,
     formState: {errors},
     getValues,
-    resetField,
+    reset,
   } = useForm<IFormInputs>({
-    mode: 'onBlur', // "onChange"
+    mode: 'onBlur',
     defaultValues: formFieldNames,
     resolver: yupResolver(validationSchema),
   });
 
-  const onLocalSubmit = () => onSubmit(getValues(), resetField, 'password');
+  const onLocalSubmit = () => onSubmit(getValues(), reset, 'password');
+
   return (
-    <VStack space={3} mt="5">
+    <View>
       {formProps.map(({...rest}, key) => (
         <TextInput errors={errors} control={control} key={key} {...rest} />
       ))}
       <SignUpLink navigation={navigation} />
       <Button
-        my="20px"
+        mode="contained"
         onPress={onLocalSubmit}
-        colorScheme="blue"
-        size="lg"
-        isLoading={isLoading}
-        isLoadingText={loginInUserText}>
+        style={styles.button}
+        loading={isLoading}
+        disabled={isLoading}>
         {loginText}
       </Button>
-    </VStack>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  button: {
+    borderRadius: 6,
+    backgroundColor: '#0d6efd',
+    marginTop: 10,
+  },
+});
 
 export default Form;

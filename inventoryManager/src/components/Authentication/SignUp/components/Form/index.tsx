@@ -1,16 +1,17 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, VStack } from 'native-base';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {Button} from 'react-native-paper';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 import TextInput from '../../../../../common/forms/TextInput';
 import {
   creatingUserText,
   formFieldNames,
   formProps,
   signUpText,
-  validationSchema
+  validationSchema,
 } from './constants';
-import { IFormInputs, IFormProps } from './types';
+import {IFormInputs, IFormProps} from './types';
 
 const Form: React.FC<IFormProps> = ({onSubmit, isLoading}) => {
   const {
@@ -25,22 +26,32 @@ const Form: React.FC<IFormProps> = ({onSubmit, isLoading}) => {
   });
 
   const onLocalSubmit = () => onSubmit(getValues(), reset);
+
   return (
-    <VStack space={3} mt="5">
+    <View style={styles.container}>
       {formProps.map(({...rest}, key) => (
         <TextInput errors={errors} control={control} key={key} {...rest} />
       ))}
       <Button
-        my="20px"
+        mode="contained"
         onPress={onLocalSubmit}
-        colorScheme="blue"
-        size="lg"
-        isLoading={isLoading}
-        isLoadingText={creatingUserText}>
-        {signUpText}
+        loading={isLoading}
+        disabled={isLoading}
+        contentStyle={styles.buttonContent}>
+        {isLoading ? creatingUserText : signUpText}
       </Button>
-    </VStack>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 10,
+  },
+  buttonContent: {
+    backgroundColor: '#0d6efd',
+    borderRadius: 6,
+  },
+});
 
 export default Form;

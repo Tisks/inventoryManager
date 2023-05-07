@@ -1,78 +1,72 @@
-import {
-  Alert, CloseIcon, HStack, IAlertProps, IconButton, IToastProps, Text, useToast, VStack
-} from 'native-base';
-import React from 'react';
+import * as React from 'react';
+import {StyleSheet} from 'react-native';
+import {Button, Dialog, Portal, Text} from 'react-native-paper';
 
-export interface ToastProps
-  extends Pick<IAlertProps, 'status' | 'variant'>,
-    Omit<IToastProps, 'variant'> {
-  id: string;
+export interface ToastProps {
+  status?: 'error' | 'success' | 'info' | 'warning';
   title?: string;
   description?: string;
-  isClosable?: boolean;
+  visible: boolean;
+  hideToast: () => void;
 }
 
-export const Toast: React.FC<ToastProps> = ({
-  id,
-  status,
-  variant,
+const Toast: React.FC<ToastProps> = ({
+  status = 'info',
   title,
   description,
-  isClosable,
+  visible,
+  hideToast,
 }) => {
-  const toast = useToast();
+  const getColor = (status: string) => {
+    switch (status) {
+      case 'error':
+        return '#FF5757';
+      case 'success':
+        return '#4CAF50';
+      case 'warning':
+        return '#FFC107';
+      default:
+        return '#4CAF50';
+    }
+  };
+
+  const dialogContainerStyle = [
+    styles.dialogContainer,
+    {backgroundColor: getColor(status)},
+  ];
 
   return (
-    <Alert
-      maxWidth="100%"
-      alignSelf="center"
-      flexDirection="row"
-      status={status || 'info'}
-      variant={variant}>
-      <VStack space={1} flexShrink={1} w="80%">
-        <HStack
-          flexShrink={1}
-          alignItems="center"
-          justifyContent="space-between">
-          <HStack space={2} flexShrink={1} alignItems="center">
-            <Alert.Icon />
-            <Text
-              fontSize="md"
-              fontWeight="medium"
-              flexShrink={1}
-              color={
-                variant === 'solid'
-                  ? 'lightText'
-                  : variant !== 'outline'
-                  ? 'darkText'
-                  : null
-              }>
-              {title}
-            </Text>
-          </HStack>
-          {isClosable ? (
-            <IconButton
-              variant="unstyled"
-              icon={<CloseIcon size="3" />}
-              _icon={{
-                color: variant === 'solid' ? 'lightText' : 'darkText',
-              }}
-              onPress={() => toast.close(id)}
-            />
-          ) : null}
-        </HStack>
-        <Text
-          px="6"
-          color={
-            variant === 'solid'
-              ? 'lightText'
-              : variant !== 'outline'
-              ? 'darkText'
-              : null
-          }>
-          {description}
-        </Text>
-      </VStack>
-    </Alert>
+    <Portal>
+      <Dialog visible={visible} onDismiss={hideToast}>
+        <Dialog.Content style={dialogContainerStyle}>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.description}>{description}</Text>
+        </Dialog.Content>
+        <Dialog.Actions>
+          <Button onPress={hideToast}>OK</Button>
+        </Dialog.Actions>
+      </Dialog>
+    </Portal>
   );
 };
+
+const styles = StyleSheet.create({
+  dialogContainer: {
+    padding: 16,
+    borderRadius: 8,
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  description: {
+    fontSize: 16,
+    lineHeight: 22,
+    marginBottom: 16,
+  },
+});
+
+export default Toast;

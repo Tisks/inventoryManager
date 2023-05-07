@@ -1,4 +1,4 @@
-import { UseFormResetField } from 'react-hook-form';
+import { UseFormReset } from 'react-hook-form';
 import { WithNavigation } from '../../../../../../App';
 
 export interface IFormInputs {
@@ -9,7 +9,7 @@ export interface IFormInputs {
 export interface IFormProps extends WithNavigation {
   onSubmit: (
     data: IFormInputs,
-    resetField: UseFormResetField<IFormInputs>,
+    resetField: UseFormReset<IFormInputs>,
     fieldToBeReset: keyof IFormInputs,
   ) => void;
   isLoading?: boolean;

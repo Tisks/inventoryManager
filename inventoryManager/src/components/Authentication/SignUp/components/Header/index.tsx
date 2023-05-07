@@ -1,18 +1,17 @@
-import { Heading } from 'native-base';
 import React from 'react';
+import {StyleSheet} from 'react-native';
+import {Headline} from 'react-native-paper';
 
 const Header = () => {
-  return (
-    <Heading
-      size="lg"
-      fontWeight="600"
-      color="coolGray.800"
-      _dark={{
-        color: 'warmGray.50',
-      }}>
-      Sign up
-    </Heading>
-  );
+  return <Headline style={styles.header}>Sign up</Headline>;
 };
+
+const styles = StyleSheet.create({
+  header: {
+    fontSize: 32,
+    fontWeight: '600',
+    color: '#37474F',
+  },
+});
 
 export default Header;
