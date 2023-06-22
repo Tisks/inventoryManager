@@ -17,7 +17,7 @@ import ProviderButtonList from '../../components/Authentication/Login/components
 import { useAuthStateChange } from '../../hooks/useAuthStateChange';
 import { TProviderNames } from '../../utils/constants';
 import {
-  determineSuccessfulRequestResult,
+  isAuthRequestSuccessful,
   determineToastProps,
   showToast
 } from './utils';
@@ -45,7 +45,7 @@ const Login: React.FC<WithNavigation> = ({navigation}) => {
     if (props) {
       resetField(fieldToBeReset);
       showToast(toast, toastId, props);
-      determineSuccessfulRequestResult(res) && navigation.navigate('Dashboard');
+      isAuthRequestSuccessful(res) && navigation.navigate('Dashboard');
     }
   };
 

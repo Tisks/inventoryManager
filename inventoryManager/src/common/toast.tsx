@@ -10,7 +10,7 @@ export interface ToastProps {
   hideToast: () => void;
 }
 
-const Toast: React.FC<ToastProps> = ({
+export const Toast: React.FC<ToastProps> = ({
   status = 'info',
   title,
   description,
@@ -68,5 +68,3 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
 });
-
-export default Toast;

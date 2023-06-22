@@ -72,10 +72,10 @@ export const showToast = (
   !isObjectEmpty(toastProps) &&
   useToast.show({
     render: () => {
-      return <Toast id={toastId} {...toastProps} />;
+      return <Toast visible hideToast={() => {}} {...toastProps} />;
     },
   });
 
-export const determineSuccessfulRequestResult = (res: string | boolean) =>
+export const isAuthRequestSuccessful = (res: string | boolean) =>
   (typeof res === 'boolean' && res) ||
   (typeof res === 'string' && !firebaseErrorsValues.includes(res));

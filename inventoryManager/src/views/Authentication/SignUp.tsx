@@ -16,7 +16,7 @@ import {
 } from '../../components/Authentication/SignUp/components/Form/types';
 import Header from '../../components/Authentication/SignUp/components/Header';
 import {
-  determineSuccessfulRequestResult,
+  isAuthRequestSuccessful,
   determineToastProps,
   showToast
 } from './utils';
@@ -44,7 +44,7 @@ const SignUp: React.FC<WithNavigation> = ({navigation}) => {
     if (props) {
       resetForm();
       showToast(toast, toastId, props);
-      determineSuccessfulRequestResult(res) && navigation.navigate('Dashboard');
+      isAuthRequestSuccessful(res) && navigation.navigate('Dashboard');
     }
   };
   return (
