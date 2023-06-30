@@ -21,7 +21,7 @@ export const userPermissions = {
     EPermissions.DELETE,
   ],
   [userRoles.Editor]: [EPermissions.GET, EPermissions.POST, EPermissions.PUT],
-  [userRoles.Member]: [EPermissions.GET],
+  [userRoles.Member]: [EPermissions.GET, EPermissions.PUT],
 };
 
 export interface IMembership {
