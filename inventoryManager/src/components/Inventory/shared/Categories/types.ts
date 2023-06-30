@@ -1,5 +1,5 @@
 import {CategoryItem} from '../../../../types/product';
-import {CategoryProps} from './components/Category/types';
+import {CategoryProps} from './components/Category/SingleItem/types';
 
 export type categoryLayout = 'flex' | 'grid';
 
@@ -17,6 +17,3 @@ export interface CategoriesProps
 }
 
 export interface CategoriesArray extends Omit<CategoriesProps, 'layout'> {}
-
-export interface CategoryWrapperProps
-  extends Omit<CategoriesProps, 'layout' | 'categoryList'>, Pick<CategoryProps, 'item'> {}

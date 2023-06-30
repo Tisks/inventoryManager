@@ -1,7 +1,40 @@
 import { Box, Button, Flex, Text } from 'native-base';
 import React from 'react';
 import { Image } from 'react-native';
-import { CategoryProps } from './types';
+import { onCategoryPressed } from '../../../utils';
+import { CategoryProps, CategoryWrapperProps } from './types';
+
+export const CategoryWrapper: React.FC<CategoryWrapperProps> = ({
+  isDrawer,
+  setSeeAllCategories,
+  setCategoryItemSelected,
+  setIsRecentlyClosedModal,
+  textProps,
+  boxProps,
+  iconWidth,
+  iconHeight,
+  item,
+}) => {
+  return (
+    <Category
+      item={item}
+      isDrawer={isDrawer}
+      onPress={() =>
+        onCategoryPressed(
+          item,
+          isDrawer,
+          setCategoryItemSelected,
+          setSeeAllCategories,
+          setIsRecentlyClosedModal,
+        )
+      }
+      textProps={textProps}
+      boxProps={boxProps}
+      iconWidth={iconWidth}
+      iconHeight={iconHeight}
+    />
+  );
+};
 
 const Category: React.FC<CategoryProps> = ({
   item,
