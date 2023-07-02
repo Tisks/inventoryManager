@@ -3,6 +3,7 @@ import {InterfaceTextProps} from 'native-base/lib/typescript/components/primitiv
 import {CategoryItem} from '../../../../../../../types/product';
 import {CategoriesProps} from '../../../types';
 
+export type TImageSrc = 'uri' | 'library';
 export interface CategoryProps {
   item: CategoryItem;
   onPress: () => void;
@@ -11,6 +12,7 @@ export interface CategoryProps {
   iconWidth?: number;
   iconHeight?: number;
   textProps?: InterfaceTextProps;
+  imageSrc?: TImageSrc;
 }
 
 export interface CategoryWrapperProps

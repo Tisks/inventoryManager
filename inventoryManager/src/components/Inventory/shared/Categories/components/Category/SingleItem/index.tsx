@@ -1,8 +1,9 @@
-import { Box, Button, Flex, Text } from 'native-base';
+import {Box, Button, Flex, Text} from 'native-base';
 import React from 'react';
-import { Image } from 'react-native';
-import { onCategoryPressed } from '../../../utils';
-import { CategoryProps, CategoryWrapperProps } from './types';
+import {Image} from 'react-native';
+import {onCategoryPressed} from '../../../utils';
+import {CategoryProps, CategoryWrapperProps} from './types';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 export const CategoryWrapper: React.FC<CategoryWrapperProps> = ({
   isDrawer,
@@ -44,6 +45,7 @@ const Category: React.FC<CategoryProps> = ({
   iconWidth = 80,
   iconHeight = 80,
   textProps,
+  imageSrc = 'uri',
 }) => {
   return (
     <Box width={iconWidth + 10} height={iconHeight + 10} {...boxProps}>
@@ -59,11 +61,15 @@ const Category: React.FC<CategoryProps> = ({
         p={0}
         onPress={onPress}>
         <Flex alignItems="center" pt="2px">
-          <Image
-            source={{uri: item.icon}}
-            style={{width: iconWidth, height: iconHeight}}
-          />
-          <Text {...textProps}>{item.name}</Text>
+          {imageSrc === 'uri' ? (
+            <Image
+              source={{uri: item.icon}}
+              style={{width: iconWidth, height: iconHeight}}
+            />
+          ) : (
+            <Icon name={item.icon} size={30} color={'red'} />
+          )}
+          {item.name && <Text {...textProps}>{item.name}</Text>}
         </Flex>
       </Button>
     </Box>
