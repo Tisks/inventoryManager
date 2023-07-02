@@ -1,14 +1,15 @@
-import { FC } from 'react';
+import {FC} from 'react';
 import {
   AllRoutes,
   AuthRoutes,
   InventoryRoutes,
-  ManagementRoutes
+  ManagementRoutes,
 } from '../routes';
+import Account from '../views/Authentication/Account';
 import Login from '../views/Authentication/Login';
 import SignUp from '../views/Authentication/SignUp';
-import { InventoryDashboard } from '../views/Inventory/Dashboard';
-import { ManagementDashboard } from '../views/Management/Dashboard';
+import {InventoryDashboard} from '../views/Inventory/Dashboard';
+import {ManagementDashboard} from '../views/Management/Dashboard';
 import Group from '../views/Management/Group';
 import Inventory from '../views/Management/Inventory';
 
@@ -31,6 +32,10 @@ export const allRouteAndComponent: Record<
     component: Inventory,
     icon: 'square',
   },
+  Account: {
+    component: Account,
+    icon: 'user',
+  },
 };
 
 export const authRouteAndComponent: Record<AuthRoutes, any> = {
@@ -40,12 +45,14 @@ export const authRouteAndComponent: Record<AuthRoutes, any> = {
 
 export const inventoryRouteAndComponent: Record<InventoryRoutes, any> = {
   InventoryDashboard,
+  Account
 };
 
 export const managementRouteAndComponent: Record<ManagementRoutes, any> = {
   ManagementDashboard,
   Group,
   Inventory,
+  Account
 };
 
 export const providerNames = {

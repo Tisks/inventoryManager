@@ -5,6 +5,7 @@ export enum AllRoutes {
   InventoryDashboard = 'InventoryDashboard',
   Group = 'Group',
   Inventory = 'Inventory',
+  Account = 'Account',
 }
 export type TAllRoutes = keyof typeof AllRoutes;
 
@@ -18,11 +19,13 @@ export enum ManagementRoutes {
   ManagementDashboard = 'ManagementDashboard',
   Group = 'Group',
   Inventory = 'Inventory',
+  Account = 'Account',
 }
 export type TManagementRoutes = keyof typeof ManagementRoutes;
 
 export enum InventoryRoutes {
   InventoryDashboard = 'InventoryDashboard',
+  Account = 'Account',
 }
 export type TInventoryRoutes = keyof typeof InventoryRoutes;
 
