@@ -1,15 +1,17 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Text} from 'native-base';
+import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {
-    InventoryRoutes,
-    ManagementRoutes,
-    TInventoryRoutes,
-    TManagementRoutes
+  InventoryRoutes,
+  ManagementRoutes,
+  TInventoryRoutes,
+  TManagementRoutes,
 } from '.';
 import {
-    allRouteAndComponent,
-    inventoryRouteAndComponent,
-    managementRouteAndComponent
+  allRouteAndComponent,
+  inventoryRouteAndComponent,
+  managementRouteAndComponent,
 } from '../utils/constants';
 
 const Tab = createBottomTabNavigator();
