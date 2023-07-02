@@ -20,6 +20,7 @@ import {AuthRoutes, TAuthRoutes} from './src/routes';
 import {InventoryTabs, ManagementTabs} from './src/routes/tabs';
 import {authRouteAndComponent} from './src/utils/constants';
 import {Provider as PaperProvider} from 'react-native-paper';
+import {AccountButton} from './src/views/Authentication/Account';
 
 GoogleSignin.configure({
   webClientId:
@@ -38,14 +39,34 @@ const App = () => {
       <PaperProvider>
         <NativeBaseProvider>
           <Stack.Navigator>
-            <Stack.Screen name="Inventory" component={InventoryTabs} />
-            <Stack.Screen name="Management" component={ManagementTabs} />
+            <Stack.Screen
+              options={{
+                headerRight: () => <AccountButton />,
+              }}
+              name="Inventory"
+              component={InventoryTabs}
+            />
+            <Stack.Screen
+              options={{
+                headerRight: () => <AccountButton />,
+              }}
+              name="Management"
+              component={ManagementTabs}
+            />
             {Object.keys(AuthRoutes).map((route, index) => {
+              const screenName =
+                authRouteAndComponent[route as TAuthRoutes].displayName;
               return (
                 <Stack.Screen
                   key={index}
                   name={authRouteAndComponent[route as TAuthRoutes].displayName}
                   component={authRouteAndComponent[route as TAuthRoutes]}
+                  options={{
+                    headerTitle: '',
+                    ...(screenName === 'Login'
+                      ? {headerBackVisible: false}
+                      : {}),
+                  }}
                 />
               );
             })}
