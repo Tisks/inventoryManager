@@ -41,18 +41,17 @@ export const allRouteAndComponent: Record<
 export const authRouteAndComponent: Record<AuthRoutes, any> = {
   Login,
   SignUp,
+  Account,
 };
 
 export const inventoryRouteAndComponent: Record<InventoryRoutes, any> = {
   InventoryDashboard,
-  Account
 };
 
 export const managementRouteAndComponent: Record<ManagementRoutes, any> = {
   ManagementDashboard,
   Group,
   Inventory,
-  Account
 };
 
 export const providerNames = {

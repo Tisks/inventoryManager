@@ -1,6 +1,7 @@
 import auth from '@react-native-firebase/auth';
-import { useEffect } from "react";
-import { TNavigation } from "../../../App";
+import {useEffect} from 'react';
+import {TNavigation} from '../../../App';
+import {AuthRoutes} from '../../routes';
 
 export const useAuthStateChange = (navigation: TNavigation) => {
   /*
@@ -11,7 +12,7 @@ export const useAuthStateChange = (navigation: TNavigation) => {
     const unsubscribeOnAuthStateChanged = auth().onAuthStateChanged(
       async (user: any) => {
         if (user) navigation.navigate('Management', {screen: 'Dashboard'});
-        else navigation.navigate('Login')
+        else navigation.navigate(AuthRoutes.Login);
       },
     );
 
@@ -26,4 +27,4 @@ export const useAuthStateChange = (navigation: TNavigation) => {
       unsubscribeOnIdTokenChanged();
     };
   }, []);
-}
+};

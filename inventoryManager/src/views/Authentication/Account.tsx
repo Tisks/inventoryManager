@@ -4,12 +4,13 @@ import {Button} from 'react-native-paper';
 import {WithNavigation} from '../../../App';
 import {signOut} from '../../api/services/user';
 import {default as ButtonIcon} from '../../components/Inventory/shared/Categories/components/Category/SingleItem';
+import {AuthRoutes} from '../../routes';
 
 export const AccountButton: React.FC = ({}) => {
   const navigation = useNavigation();
 
   const onClicked = async () => {
-    navigation.navigate('Account');
+    navigation.navigate(AuthRoutes.Account);
   };
   return (
     <ButtonIcon
@@ -26,7 +27,7 @@ const Account: React.FC<WithNavigation> = ({navigation}) => {
     const res = await signOut();
 
     if (typeof res === 'boolean') {
-      navigation.navigate('Login');
+      navigation.navigate(AuthRoutes.Login);
     }
   };
   return (

@@ -14,7 +14,7 @@ import {
   createNativeStackNavigator,
   NativeStackHeaderProps,
 } from '@react-navigation/native-stack';
-import {NativeBaseProvider} from 'native-base';
+import {NativeBaseProvider, Text} from 'native-base';
 import React from 'react';
 import {AuthRoutes, TAuthRoutes} from './src/routes';
 import {InventoryTabs, ManagementTabs} from './src/routes/tabs';
@@ -41,33 +41,37 @@ const App = () => {
           <Stack.Navigator>
             <Stack.Screen
               options={{
-                headerRight: () => <AccountButton />,
+                headerRight: () => <Text>its me</Text>,
               }}
               name="Inventory"
               component={InventoryTabs}
             />
             <Stack.Screen
               options={{
-                headerRight: () => <AccountButton />,
+                headerRight: () => <Text>its me</Text>,
               }}
               name="Management"
               component={ManagementTabs}
             />
             {Object.keys(AuthRoutes).map((route, index) => {
               const screenName =
-                authRouteAndComponent[route as TAuthRoutes].displayName;
+                authRouteAndComponent[route as TAuthRoutes]?.displayName;
               return (
-                <Stack.Screen
-                  key={index}
-                  name={authRouteAndComponent[route as TAuthRoutes].displayName}
-                  component={authRouteAndComponent[route as TAuthRoutes]}
-                  options={{
-                    headerTitle: '',
-                    ...(screenName === 'Login'
-                      ? {headerBackVisible: false}
-                      : {}),
-                  }}
-                />
+                <>
+                  {screenName && (
+                    <Stack.Screen
+                      key={index}
+                      name={screenName}
+                      component={authRouteAndComponent[route as TAuthRoutes]}
+                      options={{
+                        headerTitle: '',
+                        ...(screenName === AuthRoutes.Login
+                          ? {headerBackVisible: false}
+                          : {}),
+                      }}
+                    />
+                  )}
+                </>
               );
             })}
           </Stack.Navigator>
