@@ -9,15 +9,15 @@ import {AuthRoutes} from '../../routes';
 export const AccountButton: React.FC = ({}) => {
   const navigation = useNavigation();
 
-  const onClicked = async () => {
+  const onPress = async () => {
     navigation.navigate(AuthRoutes.Account);
   };
   return (
     <ButtonIcon
-      item={{icon: 'user', name: ''}}
+      onPress={onPress}
       imageSrc="library"
-      onPress={onClicked}
-      boxProps={{width: 0, height: 0}}
+      item={{icon: 'user', name: ''}}
+      iconProps={{size: 30, color: 'lightblue'}}
     />
   );
 };

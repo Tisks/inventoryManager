@@ -46,33 +46,36 @@ const Category: React.FC<CategoryProps> = ({
   iconHeight = 80,
   textProps,
   imageSrc = 'uri',
+  iconProps,
 }) => {
   return (
-    <Box width={iconWidth + 10} height={iconHeight + 10} {...boxProps}>
-      <Button
-        bgColor={
-          !isDrawer
-            ? !item.selected
-              ? 'transparent'
-              : 'lightblue'
-            : 'transparent'
-        }
-        mx={0}
-        p={0}
-        onPress={onPress}>
-        <Flex alignItems="center" pt="2px">
-          {imageSrc === 'uri' ? (
-            <Image
-              source={{uri: item.icon}}
-              style={{width: iconWidth, height: iconHeight}}
-            />
-          ) : (
-            <Icon name={item.icon} size={30} color={'red'} />
-          )}
-          {item.name && <Text {...textProps}>{item.name}</Text>}
-        </Flex>
-      </Button>
-    </Box>
+    <>
+      {imageSrc === 'uri' ? (
+        <Box width={iconWidth + 10} height={iconHeight + 10} {...boxProps}>
+          <Button
+            bgColor={
+              !isDrawer
+                ? !item.selected
+                  ? 'transparent'
+                  : 'lightblue'
+                : 'transparent'
+            }
+            mx={0}
+            p={0}
+            onPress={onPress}>
+            <Flex alignItems="center" pt="2px">
+              <Image
+                source={{uri: item.icon}}
+                style={{width: iconWidth, height: iconHeight}}
+              />
+              {item.name && <Text {...textProps}>{item.name}</Text>}
+            </Flex>
+          </Button>
+        </Box>
+      ) : (
+        <Icon name={item.icon} onPress={onPress} {...iconProps} />
+      )}
+    </>
   );
 };
 

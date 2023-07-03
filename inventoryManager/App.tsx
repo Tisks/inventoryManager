@@ -41,14 +41,20 @@ const App = () => {
           <Stack.Navigator>
             <Stack.Screen
               options={{
-                headerRight: () => <Text>its me</Text>,
+                headerRight: () => <AccountButton />,
+                headerTitleAlign: 'center',
               }}
               name="Inventory"
               component={InventoryTabs}
             />
             <Stack.Screen
-              options={{
-                headerRight: () => <Text>its me</Text>,
+              options={({route}) => {
+                console.log({route});
+                return {
+                  headerRight: () => <AccountButton />,
+                  headerBackVisible: route.name !== 'Management',
+                  headerTitleAlign: 'center',
+                };
               }}
               name="Management"
               component={ManagementTabs}
@@ -68,6 +74,7 @@ const App = () => {
                         ...(screenName === AuthRoutes.Login
                           ? {headerBackVisible: false}
                           : {}),
+                        headerTitleAlign: 'center',
                       }}
                     />
                   )}
