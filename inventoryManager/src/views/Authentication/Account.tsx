@@ -31,7 +31,7 @@ const Account: React.FC<WithNavigation> = ({navigation}) => {
     }
   };
   return (
-    <Button key={0} onPress={logOut} buttonColor="blue">
+    <Button key={0} onPress={logOut} buttonColor="white" textColor='black'>
       Log Out
     </Button>
   );
