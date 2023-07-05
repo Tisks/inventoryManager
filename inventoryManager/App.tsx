@@ -49,7 +49,6 @@ const App = () => {
             />
             <Stack.Screen
               options={({route}) => {
-                console.log({route});
                 return {
                   headerRight: () => <AccountButton />,
                   headerBackVisible: route.name !== 'Management',
