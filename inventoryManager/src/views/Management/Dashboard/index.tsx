@@ -1,24 +1,9 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {IconButton, Text} from 'react-native-paper';
 import {WithNavigation} from '../../../../App';
 import AccordionTable from '../../../common/AccordionTable';
-import {InventoryRowProps} from './types';
+import { InventoryRow } from '../../../components/Management/Dashboard/components/InventoryRow';
 
 const tableTitles = ['Name', 'Inventory Number', ''];
-
-export const InventoryRow: React.FC<InventoryRowProps> = ({props}) => {
-  return (
-    <>
-      {props?.data.map((inventory, index) => (
-        <View key={index} style={styles.inventoryRow}>
-          <Text>{inventory}</Text>
-          <IconButton icon="arrow-right" />
-        </View>
-      ))}
-    </>
-  );
-};
 
 export const ManagementDashboard: React.FC<WithNavigation> = ({navigation}) => {
   const tableData = [
@@ -55,17 +40,5 @@ export const ManagementDashboard: React.FC<WithNavigation> = ({navigation}) => {
     />
   );
 };
-const styles = StyleSheet.create({
-  inventoryRow: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 40,
-    justifyContent: 'space-between',
-    backgroundColor: 'white',
-    borderWidth: 0.5,
-    borderColor: 'gray',
-  },
-});
 
 ManagementDashboard.displayName = 'Dashboard';
