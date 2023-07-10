@@ -1,10 +1,11 @@
-import { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import {FirebaseAuthTypes} from '@react-native-firebase/auth';
+import {TUser} from '../../../../types/user';
 
 export const getUserInfo = (
   user: FirebaseAuthTypes.User,
   provider?: string,
   displayName?: string,
-) => {
+): TUser | undefined => {
   if (!user) return;
 
   return {

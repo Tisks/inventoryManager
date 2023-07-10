@@ -11,3 +11,12 @@ export type TInvitation = {
   groupId: string;
   uid: string;
 };
+
+export type TUser = {
+  displayName: string | undefined;
+  email: string | null;
+  phoneNumber: string | null;
+  photoURL: string | null;
+  providerId: string;
+  uid: string;
+};

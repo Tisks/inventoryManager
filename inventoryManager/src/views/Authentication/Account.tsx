@@ -10,6 +10,7 @@ export const AccountButton: React.FC = ({}) => {
   const navigation = useNavigation();
 
   const onPress = async () => {
+    // @ts-ignore
     navigation.navigate(AuthRoutes.Account);
   };
   return (
