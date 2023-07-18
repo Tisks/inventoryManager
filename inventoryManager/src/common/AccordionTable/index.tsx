@@ -27,8 +27,10 @@ const AccordionTable: React.FC<AccordionTableProps> = ({
     <View style={styles.container}>
       <DataTable>
         <DataTable.Header style={styles.row}>
-          {tableTitles.map(name => (
-            <DataTable.Title style={{alignSelf: 'center'}}>{name}</DataTable.Title>
+          {tableTitles.map((name, key) => (
+            <DataTable.Title key={name + key} style={{alignSelf: 'center'}}>
+              {name}
+            </DataTable.Title>
           ))}
         </DataTable.Header>
 
@@ -46,7 +48,7 @@ const AccordionTable: React.FC<AccordionTableProps> = ({
             </View>
 
             {showDetails[index] && (
-              <>
+              <React.Fragment>
                 {React.Children.map(children, child => {
                   if (React.isValidElement(child)) {
                     // @ts-ignore
@@ -54,7 +56,7 @@ const AccordionTable: React.FC<AccordionTableProps> = ({
                   }
                   return null;
                 })}
-              </>
+              </React.Fragment>
             )}
             <Divider />
           </React.Fragment>

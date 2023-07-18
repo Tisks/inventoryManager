@@ -7,7 +7,7 @@ export const InventoryRow: React.FC<InventoryRowProps> = ({props}) => {
   return (
     <>
       {props?.data.map((inventory, index) => (
-        <View key={index} style={styles.inventoryRow}>
+        <View key={props.title + index} style={styles.inventoryRow}>
           <Text>{inventory}</Text>
           <IconButton icon="arrow-right" />
         </View>
