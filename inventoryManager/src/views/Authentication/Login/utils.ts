@@ -13,7 +13,7 @@ import {ParamListBase} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {TUser} from '../../../types/user';
 
-export const isLoginSuccessful = async (
+export const tryToLogin = async (
   data: IFormInputs,
   resetField: UseFormResetField<IFormInputs>,
   fieldToBeReset: keyof IFormInputs,

@@ -9,7 +9,7 @@ import Header from '../../../components/Authentication/Login/components/Header';
 import ProviderButtonList from '../../../components/Authentication/Login/components/ProviderButtonList';
 import {useAuthStateChange} from '../../../hooks/useAuthStateChange';
 import {TProviderNames} from '../../../utils/constants';
-import {isLoginSuccessful} from './utils';
+import {tryToLogin} from './utils';
 import useUserStore from '../../../stores/user';
 import {setAndNavigateToMainScreen} from '../utils';
 
@@ -37,7 +37,7 @@ const Login: React.FC<WithNavigation> = ({navigation}) => {
       <Header />
       <Form
         onSubmit={async (data, resetField, fieldToBeReset) => {
-          const user = await isLoginSuccessful(
+          const user = await tryToLogin(
             data,
             resetField,
             fieldToBeReset,
