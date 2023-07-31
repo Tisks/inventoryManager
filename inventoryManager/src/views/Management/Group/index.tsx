@@ -2,10 +2,15 @@ import React from 'react';
 import {WithNavigation} from '../../../../App';
 import AccordionTable from '../../../common/AccordionTable';
 import { InventoryRow } from '../../../components/Management/Group/Dashboard/components/InventoryRow';
+import { Collection } from '../../../types';
 
 const tableTitles = ['Name', 'Members', ''];
 
 const Group: React.FC<WithNavigation> = ({navigation}) => {
+
+  //const [groupList] = useGetFromFirestore(Collection.Group, ['members', 'array-contains', user!.uid]);
+
+  
   const tableData = [
     {
       title: 'Group 1',

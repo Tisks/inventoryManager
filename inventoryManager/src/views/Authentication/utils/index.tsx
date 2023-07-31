@@ -1,12 +1,12 @@
 import {
   firebaseErrors,
-  firebaseErrorsValues
+  firebaseErrorsValues,
 } from '../../../api/services/user/constants';
-import { Toast } from '../../../common/Toast';
-import { toastProps as LoginToastProps } from '../../../components/Authentication/Login/components/Form/constants';
-import { toastProps as SignUpToastProps } from '../../../components/Authentication/SignUp/components/Form/constants';
-import { TLooseObject, TUseToast } from '../../../types/general';
-import { isObjectEmpty } from '../../../utils/general';
+import {Toast} from '../../../common/Toast';
+import {toastProps as LoginToastProps} from '../../../components/Authentication/Login/components/Form/constants';
+import {toastProps as SignUpToastProps} from '../../../components/Authentication/SignUp/components/Form/constants';
+import {TLooseObject, TUseToast} from '../../../types/general';
+import {isObjectEmpty} from '../../../utils/general';
 
 export const TComponent = {
   LOGIN: 'LOGIN',
@@ -15,18 +15,14 @@ export const TComponent = {
 
 export type TComponentNames = keyof typeof TComponent;
 
+export const toastConstants: Record<TComponentNames, Record<string, any>> = {
+  LOGIN: LoginToastProps,
+  SIGNUP: SignUpToastProps,
+};
+
 const determineToastConstantUsed = (
   component: TComponentNames,
-): Record<string, TLooseObject> | undefined => {
-  switch (component) {
-    case TComponent.SIGNUP:
-      return SignUpToastProps;
-    case TComponent.LOGIN:
-      return LoginToastProps;
-    default:
-      return;
-  }
-};
+): Record<string, TLooseObject> | undefined => toastConstants[component];
 
 const determineSpecificToastPropsUsed = (
   res: string | boolean,
