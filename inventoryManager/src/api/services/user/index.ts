@@ -1,30 +1,31 @@
-import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
-import { IFormInputs } from '../../../components/Authentication/Login/components/Form/types';
-import { ISignUpInputs } from '../../../components/Authentication/SignUp/components/Form/types';
-import { TProviderNames } from '../../../utils/constants';
-import { createDoc } from '../../utils';
-import { USER_COLLECTION } from './routes';
-import { getUserInfo } from './utils';
-import { handleGoogleSignIn } from './utils/provider';
+import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
+import {IFormInputs} from '../../../components/Authentication/Login/components/Form/types';
+import {ISignUpInputs} from '../../../components/Authentication/SignUp/components/Form/types';
+import {TProviderNames} from '../../../utils/constants';
+import {createDoc} from '../../utils';
+import {USER_COLLECTION} from './routes';
+import {getUserInfo} from './utils';
+import {handleGoogleSignIn} from './utils/provider';
+import {TUser} from '../../../types/user';
 
 export const createUserDocument = async (
   res: FirebaseAuthTypes.UserCredential,
   provider?: string,
   displayName?: string,
   isNewUser: boolean = true,
-): Promise<boolean> => {
+): Promise<TUser | undefined> => {
   const userInfo = getUserInfo(res.user, provider, displayName);
 
-  if (!userInfo) return false;
+  if (!userInfo) return;
 
   isNewUser && (await createDoc(USER_COLLECTION, userInfo, res.user.uid));
 
-  return !!userInfo;
+  return userInfo;
 };
 
 export const signUpWithEmailAndPassword = async (
   signUpData: ISignUpInputs,
-): Promise<boolean | string> => {
+): Promise<TUser | string | undefined> => {
   const {name: displayName, email, password} = signUpData;
   try {
     const res = await auth().createUserWithEmailAndPassword(email, password);
@@ -36,12 +37,12 @@ export const signUpWithEmailAndPassword = async (
 
 export const signInWithEmailAndPassword = async (
   signInData: IFormInputs,
-): Promise<boolean | string> => {
+): Promise<TUser | string | undefined> => {
   const {email, password} = signInData;
   try {
     const res = await auth().signInWithEmailAndPassword(email, password);
     const userInfo = getUserInfo(res.user);
-    return !!userInfo;
+    return userInfo;
   } catch (e: any) {
     return e.code || false;
   }
@@ -49,7 +50,7 @@ export const signInWithEmailAndPassword = async (
 
 export const signInWithSocialNetwork = async (
   socialNetwork: TProviderNames,
-): Promise<boolean | string | undefined> => {
+): Promise<TUser | string | undefined> => {
   try {
     switch (socialNetwork) {
       case 'Google':

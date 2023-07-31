@@ -19,7 +19,7 @@ export const onSubmit = async (
   setIsSigningInUser: React.Dispatch<React.SetStateAction<boolean>>,
   toast: TUseToast,
   navigation: NativeStackNavigationProp<ParamListBase, string, undefined>,
-) => {
+): Promise<void> => {
   Keyboard.dismiss();
 
   if (!data || !data.email || !data.password) return;
@@ -28,10 +28,12 @@ export const onSubmit = async (
   const res = await signInWithEmailAndPassword(data);
   setIsSigningInUser(false);
 
+  if (!res) return;
+
   const props = determineToastProps(res, 'LOGIN', {});
 
   if (!props) return;
-  
+
   resetField(fieldToBeReset);
   showToast(toast, toastId, props);
   isAuthRequestSuccessful(res) && navigation.navigate('Dashboard');

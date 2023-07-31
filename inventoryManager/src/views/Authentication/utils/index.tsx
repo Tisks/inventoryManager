@@ -6,6 +6,7 @@ import {Toast} from '../../../common/Toast';
 import {toastProps as LoginToastProps} from '../../../components/Authentication/Login/components/Form/constants';
 import {toastProps as SignUpToastProps} from '../../../components/Authentication/SignUp/components/Form/constants';
 import {TLooseObject, TUseToast} from '../../../types/general';
+import {TUser} from '../../../types/user';
 import {isObjectEmpty} from '../../../utils/general';
 
 export const TComponent = {
@@ -41,7 +42,7 @@ const determineSpecificToastPropsUsed = (
 };
 
 export const determineToastProps = (
-  res: string | boolean,
+  res: TUser | string,
   component: TComponentNames,
   successfulRequestProps?: TLooseObject,
 ): TLooseObject | undefined => {
@@ -73,6 +74,6 @@ export const showToast = (
     },
   });
 
-export const isAuthRequestSuccessful = (res: string | boolean) =>
-  (typeof res === 'boolean' && res) ||
-  (typeof res === 'string' && !firebaseErrorsValues.includes(res));
+export const isAuthRequestSuccessful = (res: TUser | string) =>
+  //Check that is a valid TUser if its not a string
+  (typeof res === 'string' && !firebaseErrorsValues.includes(res)) || res;
