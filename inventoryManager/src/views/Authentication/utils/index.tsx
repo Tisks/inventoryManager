@@ -48,15 +48,16 @@ export const determineToastProps = (
   let props: TLooseObject | undefined = {};
   let toastPropsUsed: Record<string, TLooseObject> | undefined = {};
 
-  if (typeof res === 'string') {
-    toastPropsUsed = determineToastConstantUsed(component);
+  if (typeof res !== 'string') return successfulRequestProps;
 
-    if (!toastPropsUsed) return;
+  toastPropsUsed = determineToastConstantUsed(component);
 
-    props = determineSpecificToastPropsUsed(res, toastPropsUsed);
+  if (!toastPropsUsed) return;
 
-    if (!props) return;
-  } else props = successfulRequestProps;
+  props = determineSpecificToastPropsUsed(res, toastPropsUsed);
+
+  if (!props) return;
+
   return props;
 };
 
