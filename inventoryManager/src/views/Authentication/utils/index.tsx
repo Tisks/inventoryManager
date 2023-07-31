@@ -1,3 +1,5 @@
+import { ParamListBase } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import {
   firebaseErrors,
   firebaseErrorsValues,
@@ -74,6 +76,17 @@ export const showToast = (
     },
   });
 
-export const isAuthRequestSuccessful = (res: TUser | string) =>
+export const isAuthRequestSuccessful = (res: TUser | string): boolean =>
   //Check that is a valid TUser if its not a string
-  (typeof res === 'string' && !firebaseErrorsValues.includes(res)) || res;
+  (typeof res === 'string' && !firebaseErrorsValues.includes(res)) || !!res;
+
+export const setAndNavigateToMainScreen = (
+  user: TUser | false,
+  setUser: (payload: TUser) => void,
+  navigation: NativeStackNavigationProp<ParamListBase, string, undefined>,
+) => {
+  if (user) {
+    setUser(user);
+    navigation.navigate('Dashboard');
+  }
+};

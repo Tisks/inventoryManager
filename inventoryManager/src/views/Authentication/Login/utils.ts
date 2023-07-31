@@ -11,30 +11,32 @@ import {
 import {TUseToast} from '../../../types/general';
 import {ParamListBase} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {TUser} from '../../../types/user';
 
-export const onSubmit = async (
+export const isLoginSuccessful = async (
   data: IFormInputs,
   resetField: UseFormResetField<IFormInputs>,
   fieldToBeReset: keyof IFormInputs,
   setIsSigningInUser: React.Dispatch<React.SetStateAction<boolean>>,
   toast: TUseToast,
-  navigation: NativeStackNavigationProp<ParamListBase, string, undefined>,
-): Promise<void> => {
+): Promise<TUser | false> => {
   Keyboard.dismiss();
 
-  if (!data || !data.email || !data.password) return;
+  if (!data || !data.email || !data.password) return false;
 
   setIsSigningInUser(true);
   const res = await signInWithEmailAndPassword(data);
   setIsSigningInUser(false);
 
-  if (!res) return;
+  if (!res) return false;
 
   const props = determineToastProps(res, 'LOGIN', {});
 
-  if (!props) return;
+  if (!props) return false;
 
   resetField(fieldToBeReset);
   showToast(toast, toastId, props);
-  isAuthRequestSuccessful(res) && navigation.navigate('Dashboard');
+
+  const isSuccessful = isAuthRequestSuccessful(res);
+  return isSuccessful ? (res as TUser) : false;
 };

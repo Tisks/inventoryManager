@@ -9,10 +9,14 @@ import Header from '../../../components/Authentication/Login/components/Header';
 import ProviderButtonList from '../../../components/Authentication/Login/components/ProviderButtonList';
 import {useAuthStateChange} from '../../../hooks/useAuthStateChange';
 import {TProviderNames} from '../../../utils/constants';
-import {onSubmit} from './utils';
+import {isLoginSuccessful} from './utils';
+import useUserStore from '../../../stores/user';
+import {setAndNavigateToMainScreen} from '../utils';
 
 const Login: React.FC<WithNavigation> = ({navigation}) => {
   const toast = useToast();
+
+  const {setUser} = useUserStore();
 
   useAuthStateChange(navigation);
 
@@ -20,23 +24,29 @@ const Login: React.FC<WithNavigation> = ({navigation}) => {
 
   const loginWithSocialNetwork = async (socialNetwork: string) => {
     const res = await signInWithSocialNetwork(socialNetwork as TProviderNames);
-    if (res) navigation.navigate('Dashboard');
+
+    if (!res || typeof res === 'string') {
+      //Error of some kind, please show a toast
+    } else {
+      setAndNavigateToMainScreen(res, setUser, navigation);
+    }
   };
 
   return (
     <CenteredLayout>
       <Header />
       <Form
-        onSubmit={(data, resetField, fieldToBeReset) =>
-          onSubmit(
+        onSubmit={async (data, resetField, fieldToBeReset) => {
+          const user = await isLoginSuccessful(
             data,
             resetField,
             fieldToBeReset,
             setIsSigningInUser,
             toast,
-            navigation,
-          )
-        }
+          );
+
+          setAndNavigateToMainScreen(user, setUser, navigation);
+        }}
         navigation={navigation}
         isLoading={isSigningInUser}
       />

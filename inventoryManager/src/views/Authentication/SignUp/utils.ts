@@ -17,29 +17,31 @@ import {
   toastId,
   toastProps,
 } from '../../../components/Authentication/SignUp/components/Form/constants';
+import {TUser} from '../../../types/user';
 
-export const onSubmit = async (
+export const tryToSignUp = async (
   data: ISignUpInputs,
   resetForm: UseFormReset<IFormInputs>,
   setIsCreatingUser: React.Dispatch<React.SetStateAction<boolean>>,
   toast: TUseToast,
-  navigation: NativeStackNavigationProp<ParamListBase, string, undefined>,
-): Promise<void> => {
+): Promise<TUser | false> => {
   Keyboard.dismiss();
 
-  if (!data || !data.name || !data.email || !data.password) return;
+  if (!data || !data.name || !data.email || !data.password) return false;
 
   setIsCreatingUser(true);
   const res = await signUpWithEmailAndPassword(data);
   setIsCreatingUser(false);
 
-  if (!res) return;
+  if (!res) return false;
 
   const props = determineToastProps(res, 'SIGNUP', toastProps.successfulSignUp);
 
-  if (!props) return;
+  if (!props) return false;
 
   resetForm();
   showToast(toast, toastId, props);
-  isAuthRequestSuccessful(res) && navigation.navigate('Dashboard');
+
+  const isSuccessful = isAuthRequestSuccessful(res);
+  return isSuccessful ? (res as TUser) : false;
 };
