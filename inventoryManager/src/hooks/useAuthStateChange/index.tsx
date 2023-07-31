@@ -2,8 +2,11 @@ import auth from '@react-native-firebase/auth';
 import {useEffect} from 'react';
 import {TNavigation} from '../../../App';
 import {AuthRoutes} from '../../routes';
+import useUserStore from '../../stores/user';
 
 export const useAuthStateChange = (navigation: TNavigation) => {
+  //@ts-ignore
+  const {resetUser} = useUserStore();
   /*
    * Component that uses the Firebase Auth observer and listens
    * for authentication state changes to set the user to the state
@@ -12,7 +15,10 @@ export const useAuthStateChange = (navigation: TNavigation) => {
     const unsubscribeOnAuthStateChanged = auth().onAuthStateChanged(
       async (user: any) => {
         if (user) navigation.navigate('Management', {screen: 'Dashboard'});
-        else navigation.navigate(AuthRoutes.Login);
+        else {
+          resetUser();
+          navigation.navigate(AuthRoutes.Login);
+        }
       },
     );
 
