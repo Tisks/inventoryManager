@@ -12,7 +12,7 @@ export const createUserDocument = async (
   provider?: string,
   displayName?: string,
   isNewUser: boolean = true,
-) => {
+): Promise<boolean> => {
   const userInfo = getUserInfo(res.user, provider, displayName);
 
   if (!userInfo) return false;
