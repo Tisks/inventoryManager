@@ -8,17 +8,18 @@ const initialUser: TUser = {
   photoURL: null,
   providerId: '',
   uid: '',
+  token: '',
 };
 
 type UserStore = {
   user: TUser;
-  setUser: (payload: TUser) => void;
+  setUser: (payload: Partial<TUser>) => void;
 };
 
 const useUserStore = create<UserStore>(set => ({
   user: initialUser,
-  setUser: (payload) => set((state) => ({ user: { ...state.user, ...payload } })),
-  resetUser: () => set({ user: initialUser }),
+  setUser: payload => set(state => ({user: {...state.user, ...payload}})),
+  resetUser: () => set({user: initialUser}),
 }));
 
 export default useUserStore;

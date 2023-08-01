@@ -19,4 +19,5 @@ export type TUser = {
   photoURL: string | null;
   providerId: string;
   uid: string;
+  token: string;
 };

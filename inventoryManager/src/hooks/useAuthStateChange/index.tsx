@@ -6,7 +6,7 @@ import useUserStore from '../../stores/user';
 
 export const useAuthStateChange = (navigation: TNavigation) => {
   //@ts-ignore
-  const {resetUser} = useUserStore();
+  const {setUser, resetUser} = useUserStore();
   /*
    * Component that uses the Firebase Auth observer and listens
    * for authentication state changes to set the user to the state
@@ -26,6 +26,7 @@ export const useAuthStateChange = (navigation: TNavigation) => {
       if (!user) return;
       const newToken = await user.getIdToken();
       if (!newToken) return;
+      setUser({token: newToken});
     });
 
     return () => {

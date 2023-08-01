@@ -14,7 +14,7 @@ export const createUserDocument = async (
   displayName?: string,
   isNewUser: boolean = true,
 ): Promise<TUser | undefined> => {
-  const userInfo = getUserInfo(res.user, provider, displayName);
+  const userInfo = await getUserInfo(res.user, provider, displayName);
 
   if (!userInfo) return;
 
@@ -41,7 +41,7 @@ export const signInWithEmailAndPassword = async (
   const {email, password} = signInData;
   try {
     const res = await auth().signInWithEmailAndPassword(email, password);
-    const userInfo = getUserInfo(res.user);
+    const userInfo = await getUserInfo(res.user);
     return userInfo;
   } catch (e: any) {
     return e.code || false;
